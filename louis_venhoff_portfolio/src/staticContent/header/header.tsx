@@ -19,7 +19,6 @@ const Header:React.FC<HeaderProps> = ({ children }) => {
         
         for(let i = 0; i < childrenArr.length; i++){
             output.push(childrenArr[i]);
-            output.push(<p>/</p>)
         }
 
         setContentSlot(output);
@@ -27,6 +26,9 @@ const Header:React.FC<HeaderProps> = ({ children }) => {
         
     return(
         <div className="header--main">
+            <div className="header--title">
+                <h1>Louis Venhoff</h1>
+            </div>
             <div className="header--actions">
                 {contentSlot}
             </div>

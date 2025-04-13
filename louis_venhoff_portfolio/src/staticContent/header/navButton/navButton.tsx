@@ -1,3 +1,4 @@
+import "../../../styles/staticContent/header.css";
 
 type NavButtonProps = {
     title: String;
@@ -7,7 +8,9 @@ type NavButtonProps = {
 const NavButton:React.FC<NavButtonProps> = ({title, target}) => {
     
     return(
-        <a href={target}>{title}</a>
+        <div className="header-nav-button--background">
+            <a href={target}>{title}</a>
+        </div>
     );
 };
 

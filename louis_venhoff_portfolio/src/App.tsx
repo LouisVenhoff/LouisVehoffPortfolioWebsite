@@ -6,9 +6,9 @@ function App() {
   return (
     <>
       <Header>
-        <NavButton title="Test" target={''} />
-        <NavButton title="Test1" target={''} />
-        <NavButton title="TestABC" target={''} />
+        <NavButton title="Home" target={''} />
+        <NavButton title="Projekte" target={''} />
+        <NavButton title="Über mich" target={''} />
       </Header>
     </>
   )

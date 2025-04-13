@@ -4,12 +4,33 @@
     background-color:black;
     height: 4rem;
     display: flex;
-    justify-content: flex-end;
+    justify-content: start;
+    gap: 50px;
+    align-items: center;
+}
+
+.header--title{
+    font-size:x-large;
+    margin-inline-start: 50px;
 }
 
 .header--actions{
-    width:80%;
+    width:50%;
+    font-size: 15px;
     display:flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: start;
+    gap:5px;
+}
+
+.header-nav-button--background{
+    text-align: center;
+    background-color: var(--secondary-color);
+    padding-inline-start: 50px;
+    padding-inline-end: 50px;
+    transform: skewX(-25deg)
+}
+
+.header-nav-button--background:hover{
+    background-color: var(--primary-color);
 }
