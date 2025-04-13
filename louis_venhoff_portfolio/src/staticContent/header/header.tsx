@@ -8,21 +8,6 @@ type HeaderProps = {
 
 
 const Header:React.FC<HeaderProps> = ({ children }) => {
-    
-    const childrenArr:ReactNode[] = React.Children.toArray(children);
-
-    const [contentSlot, setContentSlot] = useState<ReactNode[]>();
-
-    useEffect(() => {
-        
-        const output:ReactNode[] = [];
-        
-        for(let i = 0; i < childrenArr.length; i++){
-            output.push(childrenArr[i]);
-        }
-
-        setContentSlot(output);
-    });
         
     return(
         <div className="header--main">
@@ -30,7 +15,7 @@ const Header:React.FC<HeaderProps> = ({ children }) => {
                 <h1>Louis Venhoff</h1>
             </div>
             <div className="header--actions">
-                {contentSlot}
+                {children}
             </div>
         </div>
     );

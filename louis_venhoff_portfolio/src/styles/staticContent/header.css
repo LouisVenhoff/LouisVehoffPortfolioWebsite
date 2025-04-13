@@ -7,6 +7,7 @@
     justify-content: start;
     gap: 50px;
     align-items: center;
+    z-index:var(--overlay-upper-z-index)
 }
 
 .header--title{
