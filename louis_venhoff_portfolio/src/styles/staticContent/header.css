@@ -1,7 +1,7 @@
 .header--main{
     position:fixed;
     width:100%;
-    background-color:black;
+    background-color:#242424;
     height: 4rem;
     display: flex;
     justify-content: start;
@@ -25,7 +25,7 @@
 
 .header-nav-button--background{
     text-align: center;
-    background-color: var(--secondary-color);
+    background-color: var(--primary-light-color);
     padding-inline-start: 50px;
     padding-inline-end: 50px;
     transform: skewX(-25deg)
