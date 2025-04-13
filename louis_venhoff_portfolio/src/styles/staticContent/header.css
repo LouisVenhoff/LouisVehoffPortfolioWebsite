@@ -1,5 +1,15 @@
 .header--main{
+    position:fixed;
     width:100%;
     background-color:black;
-    height: 16rem;
+    height: 4rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.header--actions{
+    width:80%;
+    display:flex;
+    align-items: center;
+    justify-content: space-around;
 }
