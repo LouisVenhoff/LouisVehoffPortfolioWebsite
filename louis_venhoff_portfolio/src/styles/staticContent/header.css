@@ -29,9 +29,18 @@
     background-color: var(--primary-light-color);
     padding-inline-start: 50px;
     padding-inline-end: 50px;
-    transform: skewX(-25deg)
+    transform: skewX(-25deg);
+    white-space: nowrap;
 }
 
 .header-nav-button--background:hover{
     background-color: var(--primary-color);
+}
+
+.header-actions--underline{
+    width: auto;
+    height: 3px;
+    background-color: var(--primary-color);
+    transform: skewX(-25deg);
+    box-shadow:1px 1px 15px 1px var(--primary-color);
 }

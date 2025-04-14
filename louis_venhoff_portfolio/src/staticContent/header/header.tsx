@@ -14,8 +14,13 @@ const Header:React.FC<HeaderProps> = ({ children }) => {
             <div className="header--title">
                 <h1>Louis Venhoff</h1>
             </div>
-            <div className="header--actions">
-                {children}
+            <div className="w-auto flex flex-col gap-2">
+                <div className="header--actions">
+                    {children}
+                </div>
+                <div className="header-actions--underline">
+
+                </div>
             </div>
         </div>
     );

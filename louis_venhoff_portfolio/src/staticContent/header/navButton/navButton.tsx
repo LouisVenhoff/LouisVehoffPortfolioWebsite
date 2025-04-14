@@ -8,9 +8,9 @@ type NavButtonProps = {
 const NavButton:React.FC<NavButtonProps> = ({title, target}) => {
     
     return(
-        <div className="header-nav-button--background">
-            <a href={target}>{title}</a>
-        </div>
+            <div className="header-nav-button--background">
+                <a href={target}>{title}</a>
+            </div>
     );
 };
 
