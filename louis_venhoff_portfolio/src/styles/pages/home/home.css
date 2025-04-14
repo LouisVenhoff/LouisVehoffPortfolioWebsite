@@ -1,0 +1,17 @@
+.home--content{
+    width: 75rem;
+    height: 50rem;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.home--introduction{
+    width: 100%;
+    height: 100%;
+}
+
+.home--avatar{
+    width: 100%;
+    height: 100%;
+}

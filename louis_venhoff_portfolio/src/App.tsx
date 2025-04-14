@@ -3,6 +3,7 @@ import UnderConstruction from './pages/underConstruction/underConstruction'
 import Header from './staticContent/header/header'
 import NavButton from './staticContent/header/navButton/navButton'
 import { BrowserRouter as Router, Route, Routes, Outlet } from 'react-router-dom'
+import Home from './pages/home/home'
 
 function App() {
   
@@ -29,6 +30,7 @@ function App() {
         <Routes>
           <Route path="/" element={renderHeader()}>
             <Route path="construction" element={<UnderConstruction/>}/>
+            <Route path="home" element={<Home />}/>
           </Route>
         </Routes>
       </Router>
