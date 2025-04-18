@@ -8,36 +8,28 @@ const Home:React.FC = () => {
     <div className="absolute flex justify-center items-center w-full h-full">
         <div className="home--content">
             <div className="home--introduction">
-               <div>
-                    <p className="home-introduction--heading">
+               <div className="home-introduction--heading">
+                    <p>
                          Hi, <br />
                     </p>
-                    <strong className="home-introduction--heading">
+                    <strong>
                          i´m
                     </strong>
-                    <strong className="home-introduction--heading home-introduction-description--focus-name">
+                    <strong className="home-introduction-description--focus-name">
                          {" Louis"}
                     </strong>
-                    <p className="home-introduction--heading">
+                    <p>
                          FullStack Developer <br />
                     </p>
                </div>
-               <div className="mt-16">
-                    <strong>
-                         Github Activity:
-                    </strong>
-                    <div className="mt-2">
-                         <div className="pl-8">
-                              <CommitHeatmap />
-                         </div>
-                    </div>
+                    <CommitHeatmap />
                </div>
             </div>
             <div className="home--avatar">
 
             </div>
         </div>
-    </div>);
+    );
 }
 
 export default Home;

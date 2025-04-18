@@ -4,3 +4,13 @@
 .react-calendar-heatmap .color-scale-4 { fill: #1e6823; }
 
 .react-calendar-heatmap {width: 100%; }
+
+
+.commit-heatmap--container{
+    border-style: solid;
+    border-width: 1px;
+    border-radius: var(--panel-border-radius);
+    border-color: whitesmoke;
+    padding: 1rem;
+    border-radius: var(--panel-border-radius)
+}

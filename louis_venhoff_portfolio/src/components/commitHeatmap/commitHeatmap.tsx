@@ -91,7 +91,9 @@ const CommitHeatmap: React.FC = () => {
   ];
 
   return (
-    <CalendarHeatmap
+    <div className="commit-heatmap--container">
+      <p className="mb-4">Github activity: </p>
+      <CalendarHeatmap
       startDate={new Date("2024-04-01")}
       endDate={new Date("2025-04-01")}
       values={tests}
@@ -101,7 +103,8 @@ const CommitHeatmap: React.FC = () => {
         }
         return `color-scale-${value.count}`;
       }}
-    />
+      />
+    </div>
   );
 };
 
