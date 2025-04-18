@@ -10,7 +10,7 @@
     border-style: solid;
     border-width: 1px;
     border-radius: var(--panel-border-radius);
-    border-color: whitesmoke;
+    border-color: black;
     padding: 1rem;
     border-radius: var(--panel-border-radius)
 }
