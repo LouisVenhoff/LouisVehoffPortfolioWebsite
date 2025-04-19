@@ -1,6 +1,6 @@
 .header--main{
     position:fixed;
-    width:100%;
+    width:95%;
     background-color:var(--background-dark-color);
     height: 4rem;
     display: flex;
@@ -14,10 +14,11 @@
 .header--title{
     font-size:x-large;
     margin-inline-start: 50px;
+    text-wrap: nowrap;
 }
 
 .header--actions{
-    width:50%;
+    width:auto;
     font-size: 15px;
     display:flex;
     align-items: center;
@@ -26,6 +27,7 @@
 }
 
 .header-nav-button--background{
+    flex-grow: 1;
     text-align: center;
     background-color: var(--primary-light-color);
     padding-inline-start: 50px;

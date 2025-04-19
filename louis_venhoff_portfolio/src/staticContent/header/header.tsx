@@ -14,7 +14,7 @@ const Header:React.FC<HeaderProps> = ({ children }) => {
             <div className="header--title">
                 <h1>Louis Venhoff</h1>
             </div>
-            <div className="w-auto flex flex-col gap-2">
+            <div className="w-full flex flex-col gap-2">
                 <div className="header--actions">
                     {children}
                 </div>
