@@ -15,6 +15,9 @@
 .home--avatar{
     width: 100%;
     height: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: start;
 }
 
 .home-introduction--heading{
@@ -22,7 +25,7 @@
     font-weight: bold;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     width: 100%;
-    margin-block-end: 5rem;
+    margin-block: 5rem;
 }
 
 .home-introduction--description{
@@ -34,10 +37,4 @@
 
 .home-introduction-description--focus-name{
     color: var(--primary-color)
-}
-
-.home--avatar{
-    display: flex;
-    justify-content: start;
-    align-items: end;
 }

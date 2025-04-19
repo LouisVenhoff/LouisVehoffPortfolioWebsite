@@ -18,7 +18,7 @@ const Home:React.FC = () => {
                </div>
             </div>
             <div className="home--avatar">
-               <img src={avatar} />
+               <img src={avatar} width="500" />
             </div>
         </div>
     );
