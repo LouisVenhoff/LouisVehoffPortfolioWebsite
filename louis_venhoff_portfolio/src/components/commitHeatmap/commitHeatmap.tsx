@@ -3,8 +3,31 @@ import "../../styles/components/commitHeatmap.css";
 import CalendarHeatmap from "react-calendar-heatmap";
 import { Card } from "@chakra-ui/react";
 import { Button, ButtonGroup } from '@chakra-ui/react'
+import { useQuery, gql } from "@apollo/client";
+
+const CONTRIBUTIONS_QUERY = gql`
+    {
+      user(login:"LouisVenhoff"){
+        contributionsCollection {
+          contributionCalendar{
+            weeks{
+              contributionDays{
+                date
+                contributionCount
+              }
+            }
+          }
+        }
+      }
+    }
+  `
 
 const CommitHeatmap: React.FC = () => {
+  
+  //const {data, loading, error} = useQuery(CONTRIBUTIONS_QUERY);
+
+  return "Loading..."
+  
   const tests = [
     { date: "2024-04-01", count: 3 },
     { date: "2024-04-02", count: 1 },
@@ -91,6 +114,8 @@ const CommitHeatmap: React.FC = () => {
     { date: "2025-03-25", count: 3 },
     { date: "2025-03-30", count: 1 },
   ];
+
+  
 
   const redirectToGithub = () => {
     window.open("https://github.com/LouisVenhoff");
