@@ -1,13 +1,14 @@
 .header--main{
     position:fixed;
     width:100%;
-    background-color:#242424;
+    background-color:var(--background-dark-color);
     height: 4rem;
     display: flex;
     justify-content: start;
     gap: 50px;
     align-items: center;
-    z-index:var(--overlay-upper-z-index)
+    z-index:var(--overlay-upper-z-index);
+    font-family: monospace;
 }
 
 .header--title{
