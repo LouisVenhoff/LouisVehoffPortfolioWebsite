@@ -5,10 +5,3 @@
 
 .react-calendar-heatmap {width: 100%; }
 
-
-.commit-heatmap--container{
-    background-color: var(--primary-light-color);
-    padding: 1rem;
-    border-radius: var(--panel-border-radiuss);
-    box-shadow: -1px -1px 30px 33px var(--primary-light-color);
-}

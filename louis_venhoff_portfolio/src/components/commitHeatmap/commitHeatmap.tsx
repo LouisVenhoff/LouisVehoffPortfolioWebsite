@@ -1,6 +1,8 @@
 import React from "react";
 import "../../styles/components/commitHeatmap.css";
 import CalendarHeatmap from "react-calendar-heatmap";
+import { Card } from "@chakra-ui/react";
+import { Button, ButtonGroup } from '@chakra-ui/react'
 
 const CommitHeatmap: React.FC = () => {
   const tests = [
@@ -90,20 +92,35 @@ const CommitHeatmap: React.FC = () => {
     { date: "2025-03-30", count: 1 },
   ];
 
+  const redirectToGithub = () => {
+    window.open("https://github.com/LouisVenhoff");
+  }
+
   return (
     <div className="commit-heatmap--container">
-      <p className="mb-4">Github activity: </p>
-      <CalendarHeatmap
-      startDate={new Date("2024-04-01")}
-      endDate={new Date("2025-04-01")}
-      values={tests}
-      classForValue={(value) => {
-        if (!value) {
-          return "color-empty";
-        }
-        return `color-scale-${value.count}`;
-      }}
-      />
+      <Card.Root color={"teal"} backgroundColor={"#242424"} borderColor={"teal"} boxShadow={"sm"} boxShadowColor={"teal"} >
+        <Card.Header fontSize="xl">
+          <h2>Github activity: </h2>
+        </Card.Header>
+        <Card.Body>
+          <CalendarHeatmap
+          startDate={new Date("2024-04-01")}
+          endDate={new Date("2025-04-01")}
+          values={tests}
+          classForValue={(value) => {
+            if (!value) {
+              return "color-empty";
+            }
+            return `color-scale-${value.count}`;
+          }}
+          />
+        </Card.Body>
+        <Card.Footer>
+          <Button onClick={redirectToGithub} colorScheme='teal' variant={"solid"} size='md' backgroundColor="teal">
+            Zu Github
+          </Button>
+        </Card.Footer>
+      </Card.Root>
     </div>
   );
 };
