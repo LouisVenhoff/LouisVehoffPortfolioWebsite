@@ -9,18 +9,9 @@ const Home:React.FC = () => {
         <div className="home--content">
             <div className="home--introduction">
                <div className="home-introduction--heading">
-                    <p>
-                         Hi, <br />
-                    </p>
-                    <strong>
-                         i´m
-                    </strong>
-                    <strong className="home-introduction-description--focus-name">
-                         {" Louis"}
-                    </strong>
-                    <p>
-                         FullStack Developer <br />
-                    </p>
+                    <span>
+                         Hi, <br /> i'm <span className="home-introduction-description--focus-name"> {" Louis \r\n"} <br /> </span> FullStack Developer
+                    </span>
                </div>
                     <CommitHeatmap />
                </div>
