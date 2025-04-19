@@ -14,13 +14,15 @@ const Home:React.FC = () => {
                          Hi, <br /> i'm <span className="home-introduction-description--focus-name"> {" Louis \r\n"} <br /> </span> FullStack Developer
                     </span>
                </div>
-                    <CommitHeatmap />
-               </div>
+               
+               <CommitHeatmap />
+               
             </div>
             <div className="home--avatar">
                <img src={avatar} width="500" />
-            </div>
-        </div>
+          </div>
+     </div>
+     </div>
     );
 }
 
