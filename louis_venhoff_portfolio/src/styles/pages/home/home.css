@@ -35,3 +35,9 @@
 .home-introduction-description--focus-name{
     color: var(--primary-color)
 }
+
+.home--avatar{
+    display: flex;
+    justify-content: start;
+    align-items: end;
+}

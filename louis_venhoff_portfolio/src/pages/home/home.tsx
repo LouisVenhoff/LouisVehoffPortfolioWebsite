@@ -1,5 +1,6 @@
 import CommitHeatmap from "../../components/commitHeatmap/commitHeatmap";
 import "../../styles/pages/home/home.css";
+import avatar from "../../assets/louis.png";
 
 
 const Home:React.FC = () => {
@@ -17,7 +18,7 @@ const Home:React.FC = () => {
                </div>
             </div>
             <div className="home--avatar">
-
+               <img src={avatar} />
             </div>
         </div>
     );
