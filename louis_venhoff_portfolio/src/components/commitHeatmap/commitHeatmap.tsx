@@ -98,7 +98,7 @@ const CommitHeatmap: React.FC = () => {
 
   return (
     <div className="commit-heatmap--container">
-      <Card.Root color={"teal"} backgroundColor={"#242424"} borderColor={"teal"} boxShadow={"sm"} boxShadowColor={"teal"} >
+      <Card.Root color={"teal"} backgroundColor={"#242424"} borderColor={"#202020"} boxShadow={"sm"} boxShadowColor={"teal"} >
         <Card.Header fontSize="xl">
           <h2>Github activity: </h2>
         </Card.Header>
