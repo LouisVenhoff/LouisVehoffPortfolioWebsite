@@ -1,33 +1,30 @@
 import React from "react";
 import "../../styles/components/commitHeatmap.css";
 import CalendarHeatmap from "react-calendar-heatmap";
-import { Card } from "@chakra-ui/react";
-import { Button, ButtonGroup } from '@chakra-ui/react'
+import { Card, ProgressCircle } from "@chakra-ui/react";
+import { Button, ButtonGroup } from "@chakra-ui/react";
 import { useQuery, gql } from "@apollo/client";
 
 const CONTRIBUTIONS_QUERY = gql`
-    {
-      user(login:"LouisVenhoff"){
-        contributionsCollection {
-          contributionCalendar{
-            weeks{
-              contributionDays{
-                date
-                contributionCount
-              }
+  {
+    user(login: "LouisVenhoff") {
+      contributionsCollection {
+        contributionCalendar {
+          weeks {
+            contributionDays {
+              date
+              contributionCount
             }
           }
         }
       }
     }
-  `
+  }
+`;
 
 const CommitHeatmap: React.FC = () => {
-  
-  //const {data, loading, error} = useQuery(CONTRIBUTIONS_QUERY);
+  const { data, loading, error } = useQuery(CONTRIBUTIONS_QUERY);
 
-  return "Loading..."
-  
   const tests = [
     { date: "2024-04-01", count: 3 },
     { date: "2024-04-02", count: 1 },
@@ -115,33 +112,54 @@ const CommitHeatmap: React.FC = () => {
     { date: "2025-03-30", count: 1 },
   ];
 
-  
-
   const redirectToGithub = () => {
     window.open("https://github.com/LouisVenhoff");
-  }
+  };
+
+  const renderHeatmap = () => {
+    return loading ? (
+      <ProgressCircle.Root value={null} size="sm">
+        <ProgressCircle.Circle>
+          <ProgressCircle.Track />
+          <ProgressCircle.Range />
+        </ProgressCircle.Circle>
+      </ProgressCircle.Root>
+    ) : (
+      <CalendarHeatmap
+        startDate={new Date("2024-04-01")}
+        endDate={new Date("2025-04-01")}
+        values={tests}
+        classForValue={(value) => {
+          if (!value) {
+            return "color-empty";
+          }
+          return `color-scale-${value.count}`;
+        }}
+      />
+    );
+  };
 
   return (
     <div className="commit-heatmap--container">
-      <Card.Root color={"teal"} backgroundColor={"#242424"} borderColor={"#202020"} boxShadow={"sm"} boxShadowColor={"teal"} >
+      <Card.Root
+        color={"teal"}
+        backgroundColor={"#242424"}
+        borderColor={"#202020"}
+        boxShadow={"sm"}
+        boxShadowColor={"teal"}
+      >
         <Card.Header fontSize="xl">
           <h2>Github activity: </h2>
         </Card.Header>
-        <Card.Body>
-          <CalendarHeatmap
-          startDate={new Date("2024-04-01")}
-          endDate={new Date("2025-04-01")}
-          values={tests}
-          classForValue={(value) => {
-            if (!value) {
-              return "color-empty";
-            }
-            return `color-scale-${value.count}`;
-          }}
-          />
-        </Card.Body>
+        <Card.Body>{renderHeatmap()}</Card.Body>
         <Card.Footer>
-          <Button onClick={redirectToGithub} colorScheme='teal' variant={"solid"} size='md' backgroundColor="teal">
+          <Button
+            onClick={redirectToGithub}
+            colorScheme="teal"
+            variant={"solid"}
+            size="md"
+            backgroundColor="teal"
+          >
             Zu Github
           </Button>
         </Card.Footer>
