@@ -1,4 +1,5 @@
 import "../../styles/pages/home/home.css";
+import avatar from "../../assets/louis.png";
 
 const Home:React.FC = () => {
     return(
@@ -19,7 +20,7 @@ const Home:React.FC = () => {
                </p>
             </div>
             <div className="home--avatar">
-
+               <img src={avatar} />
             </div>
         </div>
     </div>);
