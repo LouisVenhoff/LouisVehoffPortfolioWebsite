@@ -8,7 +8,7 @@ export default function useGithubApi(){
     
     const authLink = setContext(
         (_, { headers }) => {
-            const token = "ABC";
+            const token = import.meta.env.VITE_GITHUB_PAT;
     
             return {headers: {
                 ...headers,

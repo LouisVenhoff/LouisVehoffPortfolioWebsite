@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../../styles/components/commitHeatmap.css";
 import CalendarHeatmap from "react-calendar-heatmap";
 import { Card, ProgressCircle } from "@chakra-ui/react";
 import { Button, ButtonGroup } from "@chakra-ui/react";
 import { useQuery, gql } from "@apollo/client";
+
+
 
 const CONTRIBUTIONS_QUERY = gql`
   {
@@ -24,6 +26,14 @@ const CONTRIBUTIONS_QUERY = gql`
 
 const CommitHeatmap: React.FC = () => {
   const { data, loading, error } = useQuery(CONTRIBUTIONS_QUERY);
+
+  useEffect(() => {
+    console.log(data.user.contributionsCollection.contributionCalendar.weeks);
+  }, []);
+
+  const generateContributionData = (weeks:any) => {
+    
+  }
 
   const tests = [
     { date: "2024-04-01", count: 3 },
