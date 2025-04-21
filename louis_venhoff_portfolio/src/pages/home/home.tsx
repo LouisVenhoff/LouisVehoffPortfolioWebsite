@@ -18,7 +18,9 @@ const Home: React.FC = () => {
                FullStack Developer
                </span>
                </div>
-               <CommitHeatmap />
+               <div className="home--github-activity"> 
+                    <CommitHeatmap />
+               </div>
           </div>
           <div className="home--avatar">
                <img src={avatar} className="home-avatar--image" width="500px" />

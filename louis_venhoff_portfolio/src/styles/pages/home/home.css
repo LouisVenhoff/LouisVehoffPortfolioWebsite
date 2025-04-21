@@ -1,7 +1,6 @@
 .home--content{
     height: auto;
     display: flex;
-    flex-direction: row;
     gap: 5px;
 }
 
@@ -28,4 +27,22 @@
     width: 20rem;
     min-width: 20rem;
     aspect-ratio: 0.75;
+}
+
+@media screen and (max-width: 600px){
+   
+    .home-introduction--heading{
+        padding: 10px;
+        text-align: center;
+    }
+
+    .home--github-activity{
+        display: none;
+    }
+
+    .home--content{
+        flex-direction: column-reverse;
+        align-items: center;
+        justify-content: end;
+    }
 }
