@@ -120,7 +120,7 @@ const CommitHeatmap: React.FC = () => {
         <Card.Header fontSize="xl">
           <h2>Github activity: </h2>
         </Card.Header>
-        <Card.Body>{renderHeatmap()}</Card.Body>
+        <Card.Body><div className="flex justify-center">{renderHeatmap()}</div></Card.Body>
         <Card.Footer>
           <Button
             onClick={redirectToGithub}
