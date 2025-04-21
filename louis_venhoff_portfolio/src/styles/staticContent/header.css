@@ -47,3 +47,18 @@
     transform: skewX(-25deg);
     box-shadow:1px 1px 15px 1px var(--primary-color);
 }
+
+.header--drawer{
+    position: absolute;
+    display: none;
+}
+
+@media screen and (max-width: 600px){
+    .header--main{
+        display: none;
+    }
+
+    .header--drawer{
+        display: block;
+    }
+}
