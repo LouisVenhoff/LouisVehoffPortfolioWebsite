@@ -23,12 +23,18 @@ const Header:React.FC<HeaderProps> = ({ children }) => {
                 <div className="header-actions--underline" />
             </div>
         </div>
-        <div className="header--drawer">
+        <div className="header--mobile-header">
+            <div className="header-mobile--title">
+                <h1>Louis Venhoff</h1>
+            </div>
+            <div className="header--drawer">
             <Drawer.Root placement="start">
                 <Drawer.Trigger asChild>
-                    <Button variant="plain" color="teal">
-                        <GiHamburgerMenu />        
-                    </Button>
+                    <div>
+                        <Button variant="plain" color="teal" size="2xl">
+                            <GiHamburgerMenu/>        
+                        </Button>
+                    </div>
                 </Drawer.Trigger>
                 <Portal>
                     <Drawer.Backdrop />
@@ -46,6 +52,7 @@ const Header:React.FC<HeaderProps> = ({ children }) => {
                     </Drawer.Positioner>
                 </Portal>
             </Drawer.Root>
+        </div>
         </div>
         </>
     );
