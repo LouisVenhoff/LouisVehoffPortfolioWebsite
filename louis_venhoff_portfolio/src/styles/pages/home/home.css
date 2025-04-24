@@ -10,7 +10,7 @@
     --avatar-margin-block-start: 2rem;
 
     height: auto;
-    border-radius: 20px;
+    border-radius: 8px;
     background-color: #202020;
     box-shadow:  0px 0px 9px 0px #202020;
     margin-block-start: var(--avatar-margin-block-start);
