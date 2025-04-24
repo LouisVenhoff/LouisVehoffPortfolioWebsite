@@ -13,9 +13,9 @@ function App() {
     return(
       <>
         <Header>
-          <NavButton title="Home" target={''} />
-          <NavButton title="Projekte" target={''} />
-          <NavButton title="Über mich" target={''} />
+          <NavButton title="Home" target={'home'} />
+          <NavButton title="Projekte" target={'construction'} />
+          <NavButton title="Über mich" target={'construction'} />
         </Header>
         <Outlet />
       </>
