@@ -1,5 +1,5 @@
 .header--main{
-    position:fixed;
+    position:static;
     width:95%;
     background-color:var(--background-dark-color);
     height: 4rem;
@@ -46,4 +46,42 @@
     background-color: var(--primary-color);
     transform: skewX(-25deg);
     box-shadow:1px 1px 15px 1px var(--primary-color);
+}
+
+.header--drawer{
+    position: absolute;
+    display: none;
+}
+
+.header--mobile-header{
+    display: none;
+}
+
+@media screen and (max-width: 600px){
+    .header--main{
+        display: none;
+    }
+
+    .header--drawer{
+        display: block;
+    }
+
+    .header--mobile-header{
+        width: 100%;
+        height: 60px;
+        font-family:monospace;
+        display: flex;
+        justify-content: start;
+        margin-block-start: 8px;
+    }
+    
+    .header-mobile--title{
+        width: 100%;
+        height: 100%;
+        font-size: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 }
