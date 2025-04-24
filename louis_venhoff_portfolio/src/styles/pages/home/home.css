@@ -1,7 +1,7 @@
 .home--content{
     height: auto;
     display: flex;
-    gap: 50px;
+    gap: 3.125rem;
 }
 
 .home--avatar{
@@ -23,8 +23,7 @@
     font-weight: bold;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     width: 100%;
-    margin-block-start: 1rem;
-    margin-block-end: 1rem;
+    margin-block: 1rem;
 }
 
 .home-introduction-heading--focus-name{
@@ -37,11 +36,18 @@
     aspect-ratio: 0.75;
 }
 
+.home--projects-link{
+    display: none;
+}
+
 @media screen and (max-width: 600px){
    
     .home-introduction--heading{
-        padding: 10px;
-        text-align: center;
+        padding: 0px;
+        text-align: left;
+        padding-inline-start: 3rem;
+        margin-block: 0px;
+        overflow: hidden;
     }
 
     .home--avatar{
@@ -49,13 +55,17 @@
     }
 
     .home--github-activity{
-        width:80%;
-        height: 50rem;
+        display: none;
     }
 
     .home--content{
         flex-direction: column;
         align-items: center;
-        justify-content: end;
+        justify-content: start;
+        gap: 2rem;
+    }
+
+    .home--projects-link{
+        display: inline;
     }
 }

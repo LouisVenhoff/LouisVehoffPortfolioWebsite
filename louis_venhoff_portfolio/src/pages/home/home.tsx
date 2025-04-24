@@ -1,11 +1,12 @@
 import CommitHeatmap from "../../components/commitHeatmap/commitHeatmap";
 import "../../styles/pages/home/home.css";
 import avatar from "../../assets/louis.png";
+import { Button } from "@chakra-ui/react";
 
 const Home: React.FC = () => {
   return (
     <>
-     <div className="flex justify-center items-center w-full h-full">
+     <div className="flex justify-center items-center w-full h-full overflow-hidden">
           <div className="home--content">
           <div className="home--introduction">
                <div className="home-introduction--heading">
@@ -24,6 +25,11 @@ const Home: React.FC = () => {
           </div>
           <div className="home--avatar">
                <img src={avatar} className="home-avatar--image" width="500px" />
+          </div>
+          <div className="home--projects-link">
+               <Button size="xl" width={window.screen.width - 100} color="white" variant="solid" backgroundColor="teal">
+                    Zu meinen Projekten
+               </Button>
           </div>
           </div>
      </div>
