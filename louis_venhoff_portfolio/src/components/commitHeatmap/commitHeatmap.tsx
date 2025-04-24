@@ -1,122 +1,134 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../../styles/components/commitHeatmap.css";
 import CalendarHeatmap from "react-calendar-heatmap";
-import { Card } from "@chakra-ui/react";
-import { Button, ButtonGroup } from '@chakra-ui/react'
+import { Card, ProgressCircle } from "@chakra-ui/react";
+import { Button, ButtonGroup } from "@chakra-ui/react";
+import { useQuery, gql } from "@apollo/client";
+import { ContributionCalendarWeek, ContributionCalendarDay } from "../../gql/graphql";
+
+type GuiCalendarDay = {
+  date: string,
+  count: number
+}
+
+
+const CONTRIBUTIONS_QUERY = gql`
+  {
+    user(login: "LouisVenhoff") {
+      contributionsCollection {
+        contributionCalendar {
+          weeks {
+            contributionDays {
+              date
+              contributionCount
+            }
+          }
+        }
+      }
+    }
+  }
+`;
 
 const CommitHeatmap: React.FC = () => {
-  const tests = [
-    { date: "2024-04-01", count: 3 },
-    { date: "2024-04-02", count: 1 },
-    { date: "2024-04-04", count: 4 },
-    { date: "2024-04-07", count: 2 },
-    { date: "2024-04-08", count: 3 },
-    { date: "2024-04-11", count: 1 },
-    { date: "2024-04-12", count: 2 },
-    { date: "2024-04-14", count: 3 },
-    { date: "2024-04-18", count: 1 },
-    { date: "2024-04-20", count: 4 },
-    { date: "2024-04-23", count: 2 },
-    { date: "2024-05-01", count: 1 },
-    { date: "2024-05-03", count: 2 },
-    { date: "2024-05-05", count: 3 },
-    { date: "2024-05-06", count: 1 },
-    { date: "2024-05-09", count: 4 },
-    { date: "2024-05-12", count: 2 },
-    { date: "2024-05-17", count: 3 },
-    { date: "2024-05-19", count: 1 },
-    { date: "2024-05-22", count: 2 },
-    { date: "2024-06-01", count: 3 },
-    { date: "2024-06-03", count: 1 },
-    { date: "2024-06-07", count: 4 },
-    { date: "2024-06-08", count: 2 },
-    { date: "2024-06-11", count: 1 },
-    { date: "2024-06-15", count: 3 },
-    { date: "2024-06-20", count: 2 },
-    { date: "2024-06-25", count: 1 },
-    { date: "2024-07-02", count: 2 },
-    { date: "2024-07-04", count: 4 },
-    { date: "2024-07-07", count: 1 },
-    { date: "2024-07-10", count: 3 },
-    { date: "2024-07-15", count: 2 },
-    { date: "2024-07-21", count: 1 },
-    { date: "2024-08-01", count: 4 },
-    { date: "2024-08-05", count: 2 },
-    { date: "2024-08-09", count: 3 },
-    { date: "2024-08-12", count: 2 },
-    { date: "2024-08-18", count: 1 },
-    { date: "2024-08-24", count: 3 },
-    { date: "2024-08-29", count: 2 },
-    { date: "2024-09-01", count: 4 },
-    { date: "2024-09-03", count: 1 },
-    { date: "2024-09-07", count: 2 },
-    { date: "2024-09-12", count: 3 },
-    { date: "2024-09-17", count: 2 },
-    { date: "2024-09-23", count: 1 },
-    { date: "2024-10-01", count: 3 },
-    { date: "2024-10-05", count: 2 },
-    { date: "2024-10-10", count: 1 },
-    { date: "2024-10-15", count: 4 },
-    { date: "2024-10-20", count: 3 },
-    { date: "2024-10-25", count: 2 },
-    { date: "2024-11-01", count: 1 },
-    { date: "2024-11-04", count: 2 },
-    { date: "2024-11-08", count: 3 },
-    { date: "2024-11-12", count: 1 },
-    { date: "2024-11-19", count: 4 },
-    { date: "2024-11-22", count: 2 },
-    { date: "2024-12-01", count: 3 },
-    { date: "2024-12-07", count: 1 },
-    { date: "2024-12-11", count: 2 },
-    { date: "2024-12-18", count: 3 },
-    { date: "2024-12-25", count: 2 },
-    { date: "2025-01-01", count: 1 },
-    { date: "2025-01-04", count: 4 },
-    { date: "2025-01-09", count: 3 },
-    { date: "2025-01-12", count: 2 },
-    { date: "2025-01-18", count: 1 },
-    { date: "2025-01-21", count: 3 },
-    { date: "2025-01-25", count: 2 },
-    { date: "2025-02-01", count: 4 },
-    { date: "2025-02-05", count: 1 },
-    { date: "2025-02-10", count: 2 },
-    { date: "2025-02-14", count: 3 },
-    { date: "2025-02-20", count: 2 },
-    { date: "2025-02-27", count: 1 },
-    { date: "2025-03-01", count: 4 },
-    { date: "2025-03-06", count: 2 },
-    { date: "2025-03-10", count: 3 },
-    { date: "2025-03-15", count: 1 },
-    { date: "2025-03-20", count: 2 },
-    { date: "2025-03-25", count: 3 },
-    { date: "2025-03-30", count: 1 },
-  ];
+  const { data, loading, error } = useQuery(CONTRIBUTIONS_QUERY);
+
+  const [contributions, setContributions] = useState<GuiCalendarDay[]>([]);
+  const [firstCalendarDate, setFirstCalendarDate] = useState<string>("0");
+  const [lastCalendarDate, setLastCalendarDate] = useState<string>("0");
+
+  useEffect(() => {
+    if(!loading && !error){
+      setContributions(generateContributionData(data.user.contributionsCollection.contributionCalendar.weeks));
+    }
+  },[loading, data, error]);
+
+  useEffect(() => {
+    if(contributions.length > 0){
+      setFirstCalendarDate(findFirstCalendarDate());
+      setLastCalendarDate(findLastCalendarDate());
+    }
+  }, [contributions]);
+
+  const generateContributionData = (weeks:ContributionCalendarWeek[]):GuiCalendarDay[] => {
+    
+    let guiContributionDays:GuiCalendarDay[] = [];
+    
+    for(let i = 0; i < weeks.length; i++){
+      
+      let contributionDays:ContributionCalendarDay[] = weeks[i].contributionDays;
+      
+      for(let j = 0; j < contributionDays.length; j++){
+        guiContributionDays.push({date: contributionDays[j].date, count: contributionDays[j].contributionCount });
+      }
+    }
+
+    return guiContributionDays;
+  }
+
+  const findFirstCalendarDate = ():string => {
+    if(contributions.length === 0){
+      throw "Error: Trying to load calendar without data!"
+    }
+
+    return contributions[0].date;
+  }
+
+  const findLastCalendarDate = ():string => {
+    if(contributions.length === 0){
+      throw "Error: Trying to load calendar without data!";
+    }
+
+    return contributions[contributions.length -1].date;
+  }
 
   const redirectToGithub = () => {
     window.open("https://github.com/LouisVenhoff");
-  }
+  };
+
+  const renderHeatmap = () => {
+    return loading ? (
+      <ProgressCircle.Root value={null} size="sm">
+        <ProgressCircle.Circle>
+          <ProgressCircle.Track />
+          <ProgressCircle.Range />
+        </ProgressCircle.Circle>
+      </ProgressCircle.Root>
+    ) : (
+      <CalendarHeatmap
+        startDate={new Date(firstCalendarDate)}
+        endDate={new Date(lastCalendarDate)}
+        values={contributions}
+        classForValue={(value) => {
+          if (!value) {
+            return "color-empty";
+          }
+          return `color-scale-${value.count}`;
+        }}
+      />
+    );
+  };
 
   return (
     <div className="commit-heatmap--container">
-      <Card.Root color={"teal"} backgroundColor={"#242424"} borderColor={"#202020"} boxShadow={"sm"} boxShadowColor={"teal"} >
+      <Card.Root
+        color={"teal"}
+        backgroundColor={"#242424"}
+        borderColor={"#202020"}
+        boxShadow={"sm"}
+        boxShadowColor={"teal"}
+      >
         <Card.Header fontSize="xl">
           <h2>Github activity: </h2>
         </Card.Header>
-        <Card.Body>
-          <CalendarHeatmap
-          startDate={new Date("2024-04-01")}
-          endDate={new Date("2025-04-01")}
-          values={tests}
-          classForValue={(value) => {
-            if (!value) {
-              return "color-empty";
-            }
-            return `color-scale-${value.count}`;
-          }}
-          />
-        </Card.Body>
+        <Card.Body><div className="flex justify-center">{renderHeatmap()}</div></Card.Body>
         <Card.Footer>
-          <Button onClick={redirectToGithub} colorScheme='teal' variant={"solid"} size='md' backgroundColor="teal">
+          <Button
+            onClick={redirectToGithub}
+            colorScheme="teal"
+            variant={"solid"}
+            size="md"
+            backgroundColor="teal"
+          >
             Zu Github
           </Button>
         </Card.Footer>
