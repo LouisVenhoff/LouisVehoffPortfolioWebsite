@@ -5,9 +5,9 @@ import test from "../../assets/test.md?raw";
 
 const Project:React.FC = () => { 
     return(
-        <div className="w-full h-full flex justify-center">
-            <div className="bg-black m-64 w-full h-full">
-                <MarkdownPreview source={test} />
+        <div className="project--main">
+            <div className="project--content">
+                "Hello WOrld"
             </div>
         </div>
     );
