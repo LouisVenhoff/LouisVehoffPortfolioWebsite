@@ -1,16 +1,22 @@
-.project--main{
-    height: auto;
+.project-main{
     width: 100%;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.project--content{
-    width: 80%;
     height: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+}
+
+.project-main--header{
+    width: 80%;
+    align-self: center;
+    margin-block-start: 20px;
+    margin-block-end: 10px;
+    font-size: 30px;
+    font-family: monospace;
+}
+
+.project-main--markdown-viewer{
+    align-self: center;
+    height: auto;
+    width: 80%;
 }
