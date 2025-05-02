@@ -1,5 +1,6 @@
 using portfolio_backend.Models;
 using portfolio_backend.Data;
+using portfolio_backend.Lib;
 
 namespace portfolio_backend.Services{
 
@@ -13,18 +14,31 @@ namespace portfolio_backend.Services{
 
         public void StartUpdate(){
             Task.Run(async () => {
-                using(var scope = _scopeFactory.CreateScope()){
-                    var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-                    var items = await dbContext.Repositorys.ToListAsync();
+                
+                await GithubApi.FetchRepositorys();
 
-                    Repository repo = new Repository{
-                        Name = "Random Repo" 
-                    };
+                using var scope = _scopeFactory.CreateScope();
+                var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                var items = await dbContext.Repositorys.ToListAsync();
 
-                    dbContext.Repositorys.Add(repo);
-                    await dbContext.SaveChangesAsync();
+                List<Repository> repoList = await GithubApi.FetchRepositorys();
+
+                // dbContext.Repositorys.AddRange(repoList);
+
+                try{
+                    foreach(Repository repo in repoList){
+                        Repository? foundRepo = dbContext.Repositorys.SingleOrDefault(r => r.Name == repo.Name);
+
+                        if(foundRepo == null){
+                            dbContext.Add(repo);
+                        }
+                    }
+                }
+                catch(Exception ex){
+                    Console.WriteLine(ex.Message);
                 }
 
+                await dbContext.SaveChangesAsync();
             });
         }
     }

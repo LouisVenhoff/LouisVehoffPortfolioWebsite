@@ -19,7 +19,7 @@ namespace portfolio_backend.Controllers
         public async Task<ActionResult<bool>> PostWebhook(){
     
             this.updateService.StartUpdate();
-
+            
             return Ok();
         }
     }
