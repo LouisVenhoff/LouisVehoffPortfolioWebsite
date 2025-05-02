@@ -3,7 +3,7 @@ using portfolio_backend.Models;
 
 namespace portfolio_backend.Data{
 
-    class ApplicationDbContext : DbContext{
+    public class ApplicationDbContext : DbContext{
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base (options){
 

@@ -42,37 +42,6 @@ namespace portfolio_backend.Controllers
             return repository;
         }
 
-        // PUT: api/Repository/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutRepository(int id, Repository repository)
-        {
-            if (id != repository.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(repository).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!RepositoryExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
         // POST: api/Repository
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
@@ -82,22 +51,6 @@ namespace portfolio_backend.Controllers
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetRepository", new { id = repository.Id }, repository);
-        }
-
-        // DELETE: api/Repository/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteRepository(int id)
-        {
-            var repository = await _context.Repositorys.FindAsync(id);
-            if (repository == null)
-            {
-                return NotFound();
-            }
-
-            _context.Repositorys.Remove(repository);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
         }
 
         private bool RepositoryExists(int id)
