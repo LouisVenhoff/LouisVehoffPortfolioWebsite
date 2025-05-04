@@ -8,7 +8,7 @@ namespace portfolio_backend.Lib{
 
     static class GithubApi {
 
-        private const String GH_PERSONAL_ACCESS_TOKEN = "git api key here";
+        private const String GH_PERSONAL_ACCESS_TOKEN = "github PAT";
 
         private static HttpClient client = new HttpClient();
 
@@ -26,7 +26,7 @@ namespace portfolio_backend.Lib{
             foreach(JObject obj in JArray.Parse(rawJson)){
                 if(obj["name"] == null) continue;
 
-                repositories.Add(new Repository(obj["name"]!.ToString(), obj["ssh_url"]!.ToString()));
+                repositories.Add(new Repository(obj["name"]!.ToString(), obj["clone_url"]!.ToString()));
             };
 
             return repositories;
