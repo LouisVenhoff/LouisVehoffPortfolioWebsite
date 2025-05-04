@@ -20,7 +20,6 @@ namespace portfolio_backend.Services{
                 var items = await dbContext.Repositorys.ToListAsync();
 
                 List<Repository> repoList = await GithubApi.FetchRepositorys();
-
                 try{
                     foreach(Repository repo in repoList){
                         Repository? foundRepo = dbContext.Repositorys.SingleOrDefault(r => r.Name == repo.Name);
