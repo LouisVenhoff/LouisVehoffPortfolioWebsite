@@ -1,4 +1,6 @@
 using portfolio_backend.Data;
+using portfolio_backend.Services;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +10,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddSingleton<RepoUpdateService>();
 
 var connectionString = builder.Configuration.GetConnectionString("Default");
 Console.WriteLine(connectionString);
