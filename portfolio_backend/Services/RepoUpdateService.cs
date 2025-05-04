@@ -15,15 +15,11 @@ namespace portfolio_backend.Services{
         public void StartUpdate(){
             Task.Run(async () => {
                 
-                await GithubApi.FetchRepositorys();
-
                 using var scope = _scopeFactory.CreateScope();
                 var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
                 var items = await dbContext.Repositorys.ToListAsync();
 
                 List<Repository> repoList = await GithubApi.FetchRepositorys();
-
-                // dbContext.Repositorys.AddRange(repoList);
 
                 try{
                     foreach(Repository repo in repoList){
