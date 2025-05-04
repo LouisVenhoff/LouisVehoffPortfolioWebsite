@@ -8,8 +8,9 @@ namespace portfolio_backend.Models
 
         public Repository(){}
 
-        public Repository(String? Name){
+        public Repository(String Name, String CloneLink){
             this.Name = Name;
+            this.CloneLink = CloneLink;
         }
 
         [Key]
@@ -17,6 +18,9 @@ namespace portfolio_backend.Models
 
         [Required]
         public String? Name {get; set;}
+
+        [Required]
+        public String CloneLink {get; set;}
 
     }
 }

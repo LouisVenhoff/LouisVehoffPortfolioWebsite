@@ -26,7 +26,7 @@ namespace portfolio_backend.Lib{
             foreach(JObject obj in JArray.Parse(rawJson)){
                 if(obj["name"] == null) continue;
 
-                repositories.Add(new Repository(obj["name"]!.ToString()));
+                //repositories.Add(new Repository(obj["name"]!.ToString()));
             };
 
             return repositories;
