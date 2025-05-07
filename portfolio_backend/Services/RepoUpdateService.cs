@@ -3,6 +3,7 @@ using portfolio_backend.Data;
 using portfolio_backend.Lib;
 using Microsoft.EntityFrameworkCore.Query.Internal;
 using System.Threading.Tasks;
+using GitRepo = LibGit2Sharp.Repository;
 
 namespace portfolio_backend.Services{
 
@@ -46,14 +47,28 @@ namespace portfolio_backend.Services{
             var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
             var items = await dbContext.Repositorys.ToListAsync();
 
-            if(Directory.Exists("/var/portfolio") == false){
-                Console.WriteLine("Creating folder for repositorys");
-                DirectoryInfo dirInfo = Directory.CreateDirectory("/var/portfolio");
+            try{
+                if(Directory.Exists("/var/portfolio") == false){
+                    Console.WriteLine("Creating folder for repositorys");
+                    DirectoryInfo dirInfo = Directory.CreateDirectory("/var/portfolio");
+                }
+            
+                foreach(Repository repo in items){
+                    if(Directory.Exists($"/var/portfolio/{repo.Id}")){
+                        Console.WriteLine($"Pulling: {repo.Name}");
+                        //TODO: Pull repo here
+                    }
+                    else{
+                        if(repo.Name == "aircraft") return;
+                        Console.WriteLine($"Cloning: {repo.Name}");
+                        GitRepo.Clone(repo.CloneLink, $"/var/portfolio/{repo.Id}");
+                    }
+                }
+            }catch(Exception e){
+                Console.WriteLine($"There was an Error! {e.Message}");
             }
             
-            foreach(Repository repo in items){
-
-            }
+            
         }
     }
 
