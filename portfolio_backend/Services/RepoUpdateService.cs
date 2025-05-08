@@ -4,6 +4,7 @@ using portfolio_backend.Lib;
 using Microsoft.EntityFrameworkCore.Query.Internal;
 using System.Threading.Tasks;
 using GitRepo = LibGit2Sharp.Repository;
+using Git = LibGit2Sharp;
 
 namespace portfolio_backend.Services{
 
@@ -11,8 +12,12 @@ namespace portfolio_backend.Services{
         
         private IServiceScopeFactory _scopeFactory;
 
+        private LibGit2SharpWrapper gitWrapper;
+
         public RepoUpdateService(IServiceScopeFactory scopeFactory){
             this._scopeFactory = scopeFactory;
+
+            this.gitWrapper = new LibGit2SharpWrapper("github PAT");
         }
 
         public void StartUpdate(){
@@ -47,6 +52,7 @@ namespace portfolio_backend.Services{
             var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
             var items = await dbContext.Repositorys.ToListAsync();
 
+            
             try{
                 if(Directory.Exists("/var/portfolio") == false){
                     Console.WriteLine("Creating folder for repositorys");
@@ -59,9 +65,11 @@ namespace portfolio_backend.Services{
                         //TODO: Pull repo here
                     }
                     else{
-                        if(repo.Name == "aircraft") return;
+                        Console.WriteLine("Git here!");
+                        if(repo.Name == "aircraft") continue;
+
                         Console.WriteLine($"Cloning: {repo.Name}");
-                        GitRepo.Clone(repo.CloneLink, $"/var/portfolio/{repo.Id}");
+                        this.gitWrapper.Clone(repo.CloneLink, $"/var/portfolio/{repo.Id}");
                     }
                 }
             }catch(Exception e){
