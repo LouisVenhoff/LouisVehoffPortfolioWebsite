@@ -48,6 +48,7 @@ namespace portfolio_backend.Services{
         }
 
         private async Task PullRepositorys(){
+            Console.WriteLine("Start pull");
             using var scope = _scopeFactory.CreateScope();
             var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
             var items = await dbContext.Repositorys.ToListAsync();
@@ -62,7 +63,7 @@ namespace portfolio_backend.Services{
                 foreach(Repository repo in items){
                     if(Directory.Exists($"/var/portfolio/{repo.Id}")){
                         Console.WriteLine($"Pulling: {repo.Name}");
-                        //this.gitWrapper.Pull($"/var/portfolio/{repo.Id}");
+                        this.gitWrapper.Pull($"/var/portfolio/{repo.Id}");
                     }
                     else{
                         Console.WriteLine("Git here!");

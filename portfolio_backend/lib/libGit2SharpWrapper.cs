@@ -49,6 +49,8 @@ class LibGit2SharpWrapper{
         
         Repository repo = new Repository(path);
 
+        if(Checkout(repo) == false) return;
+
         PullOptions pullOptions = new PullOptions{
             
             FetchOptions = new FetchOptions{
