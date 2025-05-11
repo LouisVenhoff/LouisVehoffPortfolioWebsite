@@ -36,23 +36,24 @@ class LibGit2SharpWrapper{
     }
 
     public bool Checkout(Repository repo){
-        
         try{
              var remoteBranch = repo.Branches["origin/docs"];
-            var localBranch = repo.Branches["docs"];
+            Branch localBranch = repo.Branches["docs"];
 
             if(remoteBranch == null) return false;
-
-            if(localBranch != null){
+            
+            if(localBranch == null){
                 localBranch = repo.CreateBranch("docs", remoteBranch.Tip);
-                repo.Branches.Update(localBranch, b => b.UpstreamBranch = "refs/heads/docs");
+                repo.Branches.Update(localBranch, b => b.TrackedBranch = remoteBranch.CanonicalName);
                 Commands.Checkout(repo, "docs");
             }
             else{
+                Console.WriteLine(localBranch);
                 Commands.Checkout(repo, localBranch);
             }
         }
-        catch{
+        catch(Exception ex){
+            Console.WriteLine(ex.Message);
             return false;
         }
         
