@@ -22,7 +22,7 @@ class LibGit2SharpWrapper{
 
         this.githubToken = githubToken;
 
-        this.credentials = LibGit2SharpWrapper.GetCredentials(this.githubToken);
+        this.credentials = GetCredentials(this.githubToken);
 
         this.fetchOptions = new FetchOptions{
             CredentialsProvider= (_url, _user, _cred) => this.credentials
@@ -31,13 +31,17 @@ class LibGit2SharpWrapper{
         this.cloneOptions = new CloneOptions(this.fetchOptions);
     }
 
-    public string Clone(string cloneUrl, string targetFolder){
-        return Repository.Clone(cloneUrl, targetFolder, this.cloneOptions);
+    public void Clone(string cloneUrl, string targetFolder){
+        Repository.Clone(cloneUrl, targetFolder, this.cloneOptions);
+
+        Repository repo = new Repository(targetFolder);
+
+        this.Checkout(repo);
     }
 
     public bool Checkout(Repository repo){
         try{
-             var remoteBranch = repo.Branches["origin/docs"];
+            var remoteBranch = repo.Branches["origin/docs"];
             Branch localBranch = repo.Branches["docs"];
 
             if(remoteBranch == null) return false;
@@ -48,7 +52,6 @@ class LibGit2SharpWrapper{
                 Commands.Checkout(repo, "docs");
             }
             else{
-                Console.WriteLine(localBranch);
                 Commands.Checkout(repo, localBranch);
             }
         }
