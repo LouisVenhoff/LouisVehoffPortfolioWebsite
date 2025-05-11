@@ -62,7 +62,7 @@ namespace portfolio_backend.Services{
                 foreach(Repository repo in items){
                     if(Directory.Exists($"/var/portfolio/{repo.Id}")){
                         Console.WriteLine($"Pulling: {repo.Name}");
-                        //TODO: Pull repo here
+                        //this.gitWrapper.Pull($"/var/portfolio/{repo.Id}");
                     }
                     else{
                         Console.WriteLine("Git here!");

@@ -45,8 +45,10 @@ class LibGit2SharpWrapper{
         return true;
     }
 
-    public void Pull(Repository repo){
+    public void Pull(string path){
         
+        Repository repo = new Repository(path);
+
         PullOptions pullOptions = new PullOptions{
             
             FetchOptions = new FetchOptions{
