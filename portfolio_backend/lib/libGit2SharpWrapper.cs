@@ -36,21 +36,21 @@ class LibGit2SharpWrapper{
     }
 
     public bool Checkout(Repository repo){
-        var branch = repo.Branches["docs"];
-
+        
+       
+        var branch = repo.Branches["origin/docs"];
+        
         if(branch == null) return false;
 
         Commands.Checkout(repo, branch);
-
+        
         return true;
     }
 
     public void Pull(string path){
         
         Repository repo = new Repository(path);
-
-        if(Checkout(repo) == false) return;
-
+        
         PullOptions pullOptions = new PullOptions{
             
             FetchOptions = new FetchOptions{
@@ -62,6 +62,8 @@ class LibGit2SharpWrapper{
         };
         
         Commands.Pull(repo, new Signature("auto_portfolio", "auto_portfolio@portfolio.net", DateTimeOffset.Now), pullOptions);
+
+        //TODO: Try Checkout docs branch
 
     }
 
