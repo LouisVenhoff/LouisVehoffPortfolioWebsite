@@ -13,13 +13,14 @@ namespace portfolio_backend.Controllers
 
         public WebhookController(RepoUpdateService updateService){
             this.updateService = updateService;
-        } 
-        
+        }
+
         [HttpPost]
-        public async Task<ActionResult<bool>> PostWebhook(){
-    
+        public ActionResult<bool> PostWebhook()
+        {
+
             this.updateService.StartUpdate();
-            
+
             return Ok();
         }
     }
