@@ -37,12 +37,24 @@ class LibGit2SharpWrapper{
 
     public bool Checkout(Repository repo){
         
-       
-        var branch = repo.Branches["origin/docs"];
-        
-        if(branch == null) return false;
+        try{
+             var remoteBranch = repo.Branches["origin/docs"];
+            var localBranch = repo.Branches["docs"];
 
-        Commands.Checkout(repo, branch);
+            if(remoteBranch == null) return false;
+
+            if(localBranch != null){
+                localBranch = repo.CreateBranch("docs", remoteBranch.Tip);
+                repo.Branches.Update(localBranch, b => b.UpstreamBranch = "refs/heads/docs");
+                Commands.Checkout(repo, "docs");
+            }
+            else{
+                Commands.Checkout(repo, localBranch);
+            }
+        }
+        catch{
+            return false;
+        }
         
         return true;
     }
@@ -63,8 +75,7 @@ class LibGit2SharpWrapper{
         
         Commands.Pull(repo, new Signature("auto_portfolio", "auto_portfolio@portfolio.net", DateTimeOffset.Now), pullOptions);
 
-        //TODO: Try Checkout docs branch
-
+        this.Checkout(repo);
     }
 
 
