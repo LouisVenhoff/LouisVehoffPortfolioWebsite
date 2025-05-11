@@ -48,7 +48,6 @@ namespace portfolio_backend.Services{
         }
 
         private async Task PullRepositorys(){
-            Console.WriteLine("Start pull");
             using var scope = _scopeFactory.CreateScope();
             var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
             var items = await dbContext.Repositorys.ToListAsync();
@@ -66,7 +65,6 @@ namespace portfolio_backend.Services{
                         this.gitWrapper.Pull($"/var/portfolio/{repo.Id}");
                     }
                     else{
-                        Console.WriteLine("Git here!");
                         if(repo.Name == "aircraft") continue;
 
                         Console.WriteLine($"Cloning: {repo.Name}");
