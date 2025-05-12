@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore.Query.Internal;
 using System.Threading.Tasks;
 using GitRepo = LibGit2Sharp.Repository;
 using Git = LibGit2Sharp;
+using portfolio_backend.Exceptions;
 
 namespace portfolio_backend.Services{
 
@@ -17,7 +18,8 @@ namespace portfolio_backend.Services{
         public RepoUpdateService(IServiceScopeFactory scopeFactory){
             this._scopeFactory = scopeFactory;
 
-            this.gitWrapper = new LibGit2SharpWrapper("github PAT");
+            string? githubToken = Environment.GetEnvironmentVariable("GITHUB_ACCESS_TOKEN") ?? throw new GithubAuthException("GITHUB_ACCESS_TOKEN not found!");
+            this.gitWrapper = new LibGit2SharpWrapper(githubToken);
         }
 
         public void StartUpdate(){

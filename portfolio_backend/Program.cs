@@ -1,5 +1,6 @@
 using portfolio_backend.Data;
 using portfolio_backend.Services;
+using dotenv.net;
 using System;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +13,13 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<RepoUpdateService>();
+
+//Load Environment variables from .env file here and write it in native environement vars
+DotEnv.Load();
+
+foreach(KeyValuePair<string, string> entry in DotEnv.Read()){
+    Environment.SetEnvironmentVariable(entry.Key, entry.Value);
+}
 
 var connectionString = builder.Configuration.GetConnectionString("Default");
 Console.WriteLine(connectionString);
