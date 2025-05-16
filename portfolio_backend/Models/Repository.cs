@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Net.Sockets;
 using Microsoft.AspNetCore.SignalR;
+using portfolio_backend.Modles;
 
 namespace portfolio_backend.Models
 {
@@ -21,6 +22,8 @@ namespace portfolio_backend.Models
 
         [Required]
         public String CloneLink {get; set;}
+
+        public Doc? Document {get; set;}
 
     }
 }
