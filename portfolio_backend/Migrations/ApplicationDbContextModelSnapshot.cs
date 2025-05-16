@@ -30,12 +30,12 @@ namespace portfolio_backend.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("RepositoryId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("markdownPath")
+                    b.Property<string>("MarkdownPath")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<int?>("RepositoryId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

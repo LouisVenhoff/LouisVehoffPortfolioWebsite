@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace portfolio_backend.Migrations
 {
     /// <inheritdoc />
-    public partial class AddDocumentTable : Migration
+    public partial class AddDocTable : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,7 +17,7 @@ namespace portfolio_backend.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    markdownPath = table.Column<string>(type: "longtext", nullable: false)
+                    MarkdownPath = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     RepositoryId = table.Column<int>(type: "int", nullable: true)
                 },

@@ -12,8 +12,8 @@ using portfolio_backend.Data;
 namespace portfolio_backend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250516183922_AddDocumentTable")]
-    partial class AddDocumentTable
+    [Migration("20250516185843_AddDocTable")]
+    partial class AddDocTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,12 +33,12 @@ namespace portfolio_backend.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("RepositoryId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("markdownPath")
+                    b.Property<string>("MarkdownPath")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<int?>("RepositoryId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

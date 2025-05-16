@@ -75,9 +75,23 @@ namespace portfolio_backend.Services{
                 }
             }catch(Exception e){
                 Console.WriteLine($"There was an Error! {e.Message}");
+            }finally{
+                this.SeachForDocs(items);
             }
             
             
+        }
+
+        private void SeachForDocs(List<Repository> repositories){
+            
+            foreach(Repository repo in repositories){
+                if(Directory.Exists($"/var/portfolio/{repo.Id}/.portfolio")){
+                    Console.WriteLine($"{repo.Name}: Portfolio gefunden!");
+                }
+                else{
+                    Console.WriteLine($"{repo.Name}: Kein Portfolio");
+                }
+            }
         }
     }
 
