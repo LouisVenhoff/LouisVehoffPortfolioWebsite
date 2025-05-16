@@ -23,7 +23,7 @@ namespace portfolio_backend.Models
         [Required]
         public String CloneLink {get; set;}
 
-        public Doc? Document {get; set;}
+        public Doc? Doc {get; set;}
 
     }
 }
