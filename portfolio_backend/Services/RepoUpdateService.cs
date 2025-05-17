@@ -128,13 +128,13 @@ namespace portfolio_backend.Services{
 
                     if (!documentFound)
                     {
-                        dbContext.Docs.Add(new Doc($"/var/portfolio/{repo.Id}/.portfolio/portfolio.md", repo.Id));
+                        string markdownPath = $"/var/portfolio/{repo.Id}/.portfolio/portfolio.md";
+
+                        if (!File.Exists(markdownPath)) continue;
+
+                        dbContext.Docs.Add(new Doc(markdownPath, repo.Id));
                         await dbContext.SaveChangesAsync();
                     }
-                }
-                else
-                {
-                    Console.WriteLine($"{repo.Name}: Kein Portfolio");
                 }
             }
         }
