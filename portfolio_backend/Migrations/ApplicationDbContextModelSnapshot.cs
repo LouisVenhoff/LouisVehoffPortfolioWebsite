@@ -42,7 +42,7 @@ namespace portfolio_backend.Migrations
                     b.HasIndex("RepositoryId")
                         .IsUnique();
 
-                    b.ToTable("Docs");
+                    b.ToTable("Docs", (string)null);
                 });
 
             modelBuilder.Entity("portfolio_backend.Models.Repository", b =>
@@ -63,7 +63,7 @@ namespace portfolio_backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Repositorys");
+                    b.ToTable("Repositorys", (string)null);
                 });
 
             modelBuilder.Entity("portfolio_backend.Models.Doc", b =>

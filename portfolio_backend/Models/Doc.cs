@@ -6,11 +6,17 @@ namespace portfolio_backend.Models{
 
         public Doc(){}
 
+        public Doc(string MarkdownPath, int RepositoryId)
+        {
+            this.MarkdownPath = MarkdownPath;
+            this.RepositoryId = RepositoryId;
+        }
+
         [Key]
         public int Id {get; set;}
 
         [Required]
-        public required string MarkdownPath {get; set;}
+        public string MarkdownPath {get; set;}
 
         public int? RepositoryId {get; set;}
 
