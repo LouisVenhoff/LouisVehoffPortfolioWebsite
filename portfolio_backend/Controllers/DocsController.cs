@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ValueGeneration.Internal;
 using portfolio_backend.Data;
 using portfolio_backend.Dto;
+using portfolio_backend.Lib;
 using portfolio_backend.Models;
 
 namespace portfolio_backend.Controllers
@@ -41,7 +42,7 @@ namespace portfolio_backend.Controllers
 
         // GET: api/Docs/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Doc>> GetDoc(int id)
+        public async Task<ActionResult> GetDoc(int id)
         {
             var doc = await _context.Docs.FindAsync(id);
 
@@ -50,7 +51,7 @@ namespace portfolio_backend.Controllers
                 return NotFound();
             }
 
-            return doc;
+            return File(DocLoader.LoadMarkdown(doc), "application/markdown", "markdown.md");
         }
 
         private bool DocExists(int id)
