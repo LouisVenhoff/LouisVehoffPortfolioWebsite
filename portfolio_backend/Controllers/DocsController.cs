@@ -27,22 +27,21 @@ namespace portfolio_backend.Controllers
 
         // GET: api/Docs
         [HttpGet]
-        public async Task<ActionResult<List<DocDto>>> GetDocs()
+        public async Task<ActionResult<List<DocInfoDto>>> GetDocs()
         {
             List<Doc> docList = await _context.Docs.ToListAsync();
-            List<DocDto> docDtoList = [];
+            List<DocInfoDto> docDtoList = [];
 
             foreach (Doc document in docList)
             {
-                docDtoList.Add(new DocDto(document.Id, _context.Repositorys.Find(document.RepositoryId)?.Name ?? ""));
+                docDtoList.Add(new DocInfoDto(document.Id, _context.Repositorys.Find(document.RepositoryId)?.Name ?? "", document.MarkdownPath));
             }
 
             return docDtoList;
         }
 
-        // GET: api/Docs/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult> GetDoc(int id)
+        [HttpGet("download/markdown/{id}")]
+        public async Task<ActionResult> DownloadMarkdown(int id)
         {
             var doc = await _context.Docs.FindAsync(id);
 
