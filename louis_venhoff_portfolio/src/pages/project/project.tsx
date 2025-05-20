@@ -1,6 +1,7 @@
 import React from "react";
 import "../../styles/pages/project/project.css";
 import MarkdownElement from "../../components/markdownElement/markdownElement";
+import testMarkdown from "../../assets/test.md?raw";
 
 const Project:React.FC = () => { 
     return(
@@ -10,7 +11,7 @@ const Project:React.FC = () => {
                     Dillinger, the nice Markdown editor!
                 </div>
                 <div className="project-main--markdown-viewer">
-                    <MarkdownElement />
+                    <MarkdownElement markdown={testMarkdown}/>
                 </div>
             </div>
         </>

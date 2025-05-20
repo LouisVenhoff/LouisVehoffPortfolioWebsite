@@ -3,10 +3,16 @@ import "../../styles/components/markdownElement.css";
 import testMarkdown from "../../assets/test.md?raw";
 import MarkdownPreview  from "@uiw/react-markdown-preview";
 
-const MarkdownElement:React.FC = () => {
+
+type MarkdownElementProps = {
+    markdown: string
+}
+
+
+const MarkdownElement:React.FC<MarkdownElementProps> = ({markdown}) => {
     return(
         <div className="markdownElement">
-            <MarkdownPreview source={testMarkdown}/>
+            <MarkdownPreview source={markdown}/>
         </div>
     );
 }
