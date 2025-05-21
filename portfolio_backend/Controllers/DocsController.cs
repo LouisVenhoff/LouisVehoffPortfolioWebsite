@@ -40,6 +40,19 @@ namespace portfolio_backend.Controllers
             return docDtoList;
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Doc>> GetDoc(int id)
+        {
+            Doc? doc = await _context.Docs.Include(d => d.Repository).FirstOrDefaultAsync(d => d.Id == id);
+
+            if (doc == null)
+            {
+                return NotFound();
+            }
+
+            return doc;
+        }
+
         [HttpGet("download/markdown/{id}")]
         public async Task<ActionResult> DownloadMarkdown(int id)
         {
