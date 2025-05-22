@@ -2,7 +2,7 @@ import Doc from "../classes/doc";
 
 export default function useDocument(){
     
-    const loadDocumentList = async ():Promise<Document[]> => {
+    const loadDocumentList = async ():Promise<Doc[]> => {
         
         let result = await fetch("http://localhost:5297/api/Docs");
 
@@ -10,20 +10,18 @@ export default function useDocument(){
 
         let output:Doc[] = [];
         
-        data.forEach(async (project:any) => {
-            output.push(new Doc(project.repositoryName, await fetchMarkdown(project.id)));
-        });
+        for(let i = 0; i < data.length; i++){
+            output.push(new Doc(data[i].repositoryName, await fetchMarkdown(data[i].id)))
+        }
 
-        console.log(output);
+        return output;
 
-        return [];
     }
 
     const fetchMarkdown = async (docId: number):Promise<File> => {
 
         let result = await fetch(`http://localhost:5297/api/Docs/download/markdown/${docId}`);
 
-        //console.log(await result.arrayBuffer().toString());
         let buffer = await result.arrayBuffer();
         let markdownBlob = new Blob([buffer], {type: "text/markdown"});
         let file = new File([markdownBlob], "markdown.md", {type: "text/markdown"});
