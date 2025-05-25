@@ -32,7 +32,7 @@ function App() {
           <Route path="/" element={renderHeader()}>
             <Route path="construction" element={<UnderConstruction/>}/>
             <Route path="home" element={<Home />}/>
-            <Route path="project" element={<Project docId={1} />} />
+            <Route path="project/:id" element={<Project />} />
           </Route>
         </Routes>
       </Router>

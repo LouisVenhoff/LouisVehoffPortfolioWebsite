@@ -4,20 +4,18 @@ import MarkdownElement from "../../components/markdownElement/markdownElement";
 import testMarkdown from "../../assets/test.md?raw";
 import useDocument from "../../hooks/useDocument";
 import Doc from "../../classes/doc";
-
-type ProjectProps = {
-    docId: number,
-}
+import { useParams } from "react-router-dom";
 
 
-
-const Project:React.FC<ProjectProps>= ({docId}) => { 
+const Project:React.FC= () => { 
     
     const [currentDoc, setCurrentDoc] = useState<Doc>();
 
     const [markdown, setMarkdown] = useState<string>();
 
     const docLoader = useDocument();
+
+    const {id} = useParams();
     
     useEffect(() => {
         loadDoc();
@@ -28,9 +26,13 @@ const Project:React.FC<ProjectProps>= ({docId}) => {
     }, [currentDoc]);
 
     const loadDoc = async () => {
+        
+        if(!id) throw new Error("No id parameter provided!");
+        
         let docList:Doc[] = await docLoader.loadDocumentList();
+        
         //TODO: Make Route for loading a single document
-        setCurrentDoc(docList.find(dc => dc.docId == docId));
+        setCurrentDoc(docList.find(dc => dc.docId == parseInt(id)));
     }
     
     const updateMarkdown = async () => {
