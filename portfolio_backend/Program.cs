@@ -14,6 +14,14 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<RepoUpdateService>();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod();
+    });
+});
+
 //Load Environment variables from .env file here and write it in native environement vars
 DotEnv.Load();
 
@@ -28,6 +36,8 @@ builder.Services.AddDbContext<ApplicationDbContext>((options) => {
 });
 
 var app = builder.Build();
+
+app.UseCors("AllowAll");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
