@@ -11,7 +11,7 @@ export default function useDocument(){
         let output:Doc[] = [];
         
         for(let i = 0; i < data.length; i++){
-            output.push(new Doc(data[i].repositoryName, await fetchMarkdown(data[i].id)))
+            output.push(new Doc(data[i].repositoryName, data[i].id));
         }
 
         return output;
@@ -30,6 +30,6 @@ export default function useDocument(){
 
     }
 
-    return loadDocumentList;
+    return {loadDocumentList, fetchMarkdown};
 
 }

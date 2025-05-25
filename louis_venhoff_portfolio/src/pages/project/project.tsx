@@ -5,7 +5,13 @@ import testMarkdown from "../../assets/test.md?raw";
 import useDocument from "../../hooks/useDocument";
 import Doc from "../../classes/doc";
 
-const Project:React.FC = () => { 
+type ProjectProps = {
+    docId: number,
+}
+
+
+
+const Project:React.FC<ProjectProps>= ({docId}) => { 
     
     const [currentDoc, setCurrentDoc] = useState<Doc>();
 
@@ -18,14 +24,26 @@ const Project:React.FC = () => {
     }, []);
 
     useEffect(() => {
-        currentDoc?.markdown.text().then((markdownText:string) => {setMarkdown(markdownText)});
+        updateMarkdown();
     }, [currentDoc]);
 
     const loadDoc = async () => {
-        let docList:Doc[] = await docLoader();
-        setCurrentDoc(docList[0]);
+        let docList:Doc[] = await docLoader.loadDocumentList();
+        //TODO: Make Route for loading a single document
+        setCurrentDoc(docList.find(dc => dc.docId == docId));
     }
     
+    const updateMarkdown = async () => {
+        if(!currentDoc) return;
+
+        if(!currentDoc.markdownLoaded){
+            await currentDoc.loadMarkdown();
+        }
+
+        let markdownText:string = await currentDoc!.markdown!.text();
+
+        setMarkdown(markdownText);
+    }
     
     return(
         <>
