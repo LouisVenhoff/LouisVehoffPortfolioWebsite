@@ -53,6 +53,13 @@ namespace portfolio_backend.Controllers
             return File(DocLoader.LoadMarkdown(doc), "application/markdown", "markdown.md");
         }
 
+        [HttpGet("download/thumbnail/{id}")]
+
+        public async Task<ActionResult> DownloadThumbnail(int id)
+        {
+            var image
+        }
+
         private bool DocExists(int id)
         {
             return _context.Docs.Any(e => e.Id == id);
