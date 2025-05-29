@@ -57,12 +57,26 @@ namespace portfolio_backend.Controllers
 
         public async Task<ActionResult> DownloadThumbnail(int id)
         {
-            return NotFound();
+            var doc = await _context.Docs.FindAsync(id);
+
+            if (doc == null)
+            {
+                return NotFound();
+            }
+
+            return File(DocLoader.LoadThumbnail(doc), ImageContentType(doc.ThumbnailPath!));
         }
 
         private bool DocExists(int id)
         {
             return _context.Docs.Any(e => e.Id == id);
+        }
+
+        private string ImageContentType(string path)
+        {
+            string ext = Path.GetExtension(path);
+
+            return $"image/${ext.Remove(0, 1)}";
         }
     }
 }
