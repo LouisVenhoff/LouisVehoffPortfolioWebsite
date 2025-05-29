@@ -57,7 +57,7 @@ namespace portfolio_backend.Controllers
 
         public async Task<ActionResult> DownloadThumbnail(int id)
         {
-            var image
+            return NotFound();
         }
 
         private bool DocExists(int id)
