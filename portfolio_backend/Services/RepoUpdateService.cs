@@ -124,6 +124,9 @@ namespace portfolio_backend.Services{
                             documentFound = true;
                             ProcessThumbnail(document, repo);
                             //TODO: Thumbnail path is not saved to db. Find out why
+                            Console.WriteLine("Jetzt kommt das dokument!");
+                            Console.WriteLine(document.Id);
+                            Console.WriteLine(document.ThumbnailPath);
                             dbContext.Docs.Update(document);
                             await dbContext.SaveChangesAsync();
                             break;
@@ -140,7 +143,7 @@ namespace portfolio_backend.Services{
 
                         ProcessThumbnail(newDoc, repo);
 
-                        dbContext.Docs.Add(new Doc(markdownPath, repo.Id));
+                        dbContext.Docs.Add(newDoc);
                         await dbContext.SaveChangesAsync();
                     }
                 }
