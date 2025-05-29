@@ -122,6 +122,10 @@ namespace portfolio_backend.Services{
                         if (document.RepositoryId == repo.Id)
                         {
                             documentFound = true;
+                            ProcessThumbnail(document, repo);
+                            //TODO: Thumbnail path is not saved to db. Find out why
+                            dbContext.Docs.Update(document);
+                            await dbContext.SaveChangesAsync();
                             break;
                         }
                     }
@@ -150,7 +154,7 @@ namespace portfolio_backend.Services{
             var files = Directory.GetFiles($"/var/portfolio/{repo.Id}/.portfolio/", "thumbnail.*");
 
             string? path = files.FirstOrDefault(f => allowedImageExtensions.Contains(Path.GetExtension(f).ToLower()));
-
+            Console.WriteLine(path ?? "Path is null!");
             if (path == null) return;
 
             doc.ThumbnailPath = path;
