@@ -122,11 +122,8 @@ namespace portfolio_backend.Services{
                         if (document.RepositoryId == repo.Id)
                         {
                             documentFound = true;
-                            ProcessThumbnail(document, repo);
-                            //TODO: Thumbnail path is not saved to db. Find out why
-                            Console.WriteLine("Jetzt kommt das dokument!");
-                            Console.WriteLine(document.Id);
-                            Console.WriteLine(document.ThumbnailPath);
+                            ProcessAssets(document, repo);
+                
                             dbContext.Docs.Update(document);
                             await dbContext.SaveChangesAsync();
                             break;
@@ -141,7 +138,7 @@ namespace portfolio_backend.Services{
 
                         Doc newDoc = new Doc(markdownPath, repo.Id);
 
-                        ProcessThumbnail(newDoc, repo);
+                        ProcessAssets(newDoc, repo);
 
                         dbContext.Docs.Add(newDoc);
                         await dbContext.SaveChangesAsync();
@@ -150,14 +147,20 @@ namespace portfolio_backend.Services{
             }
         }
 
-        private void ProcessThumbnail(Doc doc, Repository repo)
+        private static void ProcessAssets(Doc doc, Repository repo)
+        {
+            ProcessThumbnail(doc, repo);
+        }
+
+
+        private static void ProcessThumbnail(Doc doc, Repository repo)
         {
             var allowedImageExtensions = new[] { ".jpg", ".jpeg", ".png" };
 
             var files = Directory.GetFiles($"/var/portfolio/{repo.Id}/.portfolio/", "thumbnail.*");
 
             string? path = files.FirstOrDefault(f => allowedImageExtensions.Contains(Path.GetExtension(f).ToLower()));
-            Console.WriteLine(path ?? "Path is null!");
+            
             if (path == null) return;
 
             doc.ThumbnailPath = path;
