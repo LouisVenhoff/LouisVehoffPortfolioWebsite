@@ -106,7 +106,7 @@ namespace portfolio_backend.Services{
         {
 
             using var scope = _scopeFactory.CreateScope();
-            ApplicationDbContext dbContext  = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>(); 
+            ApplicationDbContext dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
 
             List<Doc> documents = await dbContext.Docs.ToListAsync();
 
@@ -122,6 +122,10 @@ namespace portfolio_backend.Services{
                         if (document.RepositoryId == repo.Id)
                         {
                             documentFound = true;
+                            ProcessAssets(document, repo);
+                
+                            dbContext.Docs.Update(document);
+                            await dbContext.SaveChangesAsync();
                             break;
                         }
                     }
@@ -132,11 +136,34 @@ namespace portfolio_backend.Services{
 
                         if (!File.Exists(markdownPath)) continue;
 
-                        dbContext.Docs.Add(new Doc(markdownPath, repo.Id));
+                        Doc newDoc = new Doc(markdownPath, repo.Id);
+
+                        ProcessAssets(newDoc, repo);
+
+                        dbContext.Docs.Add(newDoc);
                         await dbContext.SaveChangesAsync();
                     }
                 }
             }
+        }
+
+        private static void ProcessAssets(Doc doc, Repository repo)
+        {
+            ProcessThumbnail(doc, repo);
+        }
+
+
+        private static void ProcessThumbnail(Doc doc, Repository repo)
+        {
+            var allowedImageExtensions = new[] { ".jpg", ".jpeg", ".png" };
+
+            var files = Directory.GetFiles($"/var/portfolio/{repo.Id}/.portfolio/", "thumbnail.*");
+
+            string? path = files.FirstOrDefault(f => allowedImageExtensions.Contains(Path.GetExtension(f).ToLower()));
+            
+            if (path == null) return;
+
+            doc.ThumbnailPath = path;
         }
 
     }

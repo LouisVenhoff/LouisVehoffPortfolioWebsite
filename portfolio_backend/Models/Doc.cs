@@ -10,6 +10,14 @@ namespace portfolio_backend.Models{
         {
             this.MarkdownPath = MarkdownPath;
             this.RepositoryId = RepositoryId;
+            this.ThumbnailPath = null;
+        }
+
+        public Doc(string MarkdownPath, string ThumbnailPath, int RepositoryId)
+        {
+            this.MarkdownPath = MarkdownPath;
+            this.ThumbnailPath = ThumbnailPath;
+            this.RepositoryId = RepositoryId;
         }
 
         [Key]
@@ -17,8 +25,10 @@ namespace portfolio_backend.Models{
 
         [Required]
         public string MarkdownPath {get; set;}
+        
+        public string? ThumbnailPath { get; set; }
 
-        public int? RepositoryId {get; set;}
+        public int? RepositoryId { get; set; }
 
         public Repository? Repository {get; set;} = null!;
 
