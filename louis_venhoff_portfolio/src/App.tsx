@@ -5,6 +5,7 @@ import NavButton from './staticContent/header/navButton/navButton'
 import { BrowserRouter as Router, Route, Routes, Outlet } from 'react-router-dom'
 import Home from './pages/home/home'
 import Project from './pages/project/project'
+import Projects from './pages/projects/projects'
 
 function App() {
   
@@ -33,6 +34,7 @@ function App() {
             <Route path="construction" element={<UnderConstruction/>}/>
             <Route path="home" element={<Home />}/>
             <Route path="project/:id" element={<Project />} />
+            <Route path="projects" element={<Projects />}/>
           </Route>
         </Routes>
       </Router>
