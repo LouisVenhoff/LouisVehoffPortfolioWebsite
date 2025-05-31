@@ -1,3 +1,4 @@
+import ProjectThumbnail from "../../components/projectThumbnail/projectThumbnail";
 import "../../styles/pages/projects/projects.css";
 
 
@@ -5,21 +6,13 @@ const Projects:React.FC = () => {
     return (
         <div className="flex justify-center">
             <div className="projects--container">
-                <div className="projects--element">
-
-                </div>
-                <div className="projects--element">
-
-                </div>
-                <div className="projects--element">
-
-                </div>
-                <div className="projects--element">
-
-                </div>
-                <div className="projects--element">
-
-                </div>
+                <ProjectThumbnail />
+                <ProjectThumbnail />
+                <ProjectThumbnail />
+                <ProjectThumbnail />
+                <ProjectThumbnail />
+                <ProjectThumbnail />
+                <ProjectThumbnail />
             </div>
         </div>
     );
