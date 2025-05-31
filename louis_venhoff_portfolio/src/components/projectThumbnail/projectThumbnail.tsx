@@ -1,4 +1,4 @@
-import { Badge, Card, Image, Text } from "@chakra-ui/react";
+import { Badge, Button, Card, Image, Text } from "@chakra-ui/react";
 import "../../styles/components/projectThumbnail.css";
 
 const ProjectThumbnail:React.FC = () => {
@@ -32,6 +32,11 @@ const ProjectThumbnail:React.FC = () => {
                     </Text>
                </Card.Description>
             </Card.Body>
+            <Card.Footer>
+                <Button variant="solid" backgroundColor="teal" color="white">
+                    Zum Projekt
+                </Button>
+            </Card.Footer>
         </Card.Root>
     ); 
 }
