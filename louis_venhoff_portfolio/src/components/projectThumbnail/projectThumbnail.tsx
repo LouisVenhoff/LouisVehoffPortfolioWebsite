@@ -20,7 +20,7 @@ const ProjectThumbnail:React.FC<ProjectThumbnailProps> = ({name, tags, descripti
     return (
         <Card.Root maxW="sm" overflow="hidden" variant="elevated" color="teal" backgroundColor="#171717">
             <Card.Body>
-                <Image src="https://picsum.photos/500/300" alt="Error"/>
+                <Image src={imagePath} alt="Image can not be loaded!"/>
                 <Card.Title mt="2">
                     {name}
                 </Card.Title>

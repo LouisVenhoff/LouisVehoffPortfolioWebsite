@@ -6,7 +6,8 @@ const Projects:React.FC = () => {
     return (
         <div className="flex justify-center">
             <div className="projects--container">
-                <ProjectThumbnail name="TestEintrag" description="Ein testeintrag für dieses Portfolio" tags={["Tag1", "Tag2", "Tag3", "Tag4", "hasdjashkdajshd", "hajasdkhas"]} imagePath={""} projectId={0}/>
+                <ProjectThumbnail name="TestEintrag" description="Ein testeintrag für dieses Portfolio" tags={["Tag1", "Tag2", "Tag3", "Tag4", "hasdjashkdajshd", "hajasdkhas"]} imagePath={"http://localhost:5297/api/Docs/download/thumbnail/1"} projectId={0}/>
+            
             </div>
         </div>
     );
