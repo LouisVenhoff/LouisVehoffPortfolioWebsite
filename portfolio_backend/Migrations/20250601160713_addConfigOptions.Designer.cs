@@ -12,7 +12,7 @@ using portfolio_backend.Data;
 namespace portfolio_backend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250601155549_addConfigOptions")]
+    [Migration("20250601160713_addConfigOptions")]
     partial class addConfigOptions
     {
         /// <inheritdoc />
@@ -34,7 +34,6 @@ namespace portfolio_backend.Migrations
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("DocumentName")

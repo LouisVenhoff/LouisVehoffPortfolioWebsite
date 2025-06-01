@@ -14,7 +14,7 @@ namespace portfolio_backend.Migrations
                 name: "Description",
                 table: "Docs",
                 type: "longtext",
-                nullable: false)
+                nullable: true)
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.AddColumn<string>(

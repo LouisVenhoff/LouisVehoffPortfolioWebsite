@@ -44,7 +44,7 @@ namespace portfolio_backend.Models{
 
         public string DocumentName { get; set; }
 
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         public string Tags { get; set; } = JsonSerializer.Serialize(new List<string>());
 

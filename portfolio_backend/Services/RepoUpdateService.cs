@@ -174,7 +174,7 @@ namespace portfolio_backend.Services{
         {
             var file = Directory.GetFiles($"/var/portfolio/{repo.Id}/.portfolio/", "config.json");
 
-            if (file.Length == null) return;
+            if (file.Length == 0) return;
 
             string config;
 
