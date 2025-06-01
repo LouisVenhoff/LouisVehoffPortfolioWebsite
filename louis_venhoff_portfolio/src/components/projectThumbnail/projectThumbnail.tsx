@@ -1,34 +1,35 @@
 import { Badge, Button, Card, Image, Text } from "@chakra-ui/react";
 import "../../styles/components/projectThumbnail.css";
+import { JSX } from "react";
 
-const ProjectThumbnail:React.FC = () => {
+type ProjectThumbnailProps = {
+    name: string,
+    tags: string[],
+    description?: string,
+    imagePath: string,
+    projectId: number,
+
+};
+
+const ProjectThumbnail:React.FC<ProjectThumbnailProps> = ({name, tags, description, imagePath, projectId}) => {
+    
+    const generateTags = ():JSX.Element[] => {
+        return tags.map((tag:string) => <Badge maxW="sm" backgroundColor="#242424" color="teal">{tag}</Badge>);
+    }
+    
     return (
-        // <div className="project-thumbnail--main">
-        //     <img src="https://picsum.photos/500/300" />
-        //     <div className="project-thumbnail--name-banner">
-        //         <h2>Auto Portfolio</h2>
-        //     </div>
-        // </div>
         <Card.Root maxW="sm" overflow="hidden" variant="elevated" color="teal" backgroundColor="#171717">
             <Card.Body>
                 <Image src="https://picsum.photos/500/300" alt="Error"/>
                 <Card.Title mt="2">
-                    Automatic Portfolio
+                    {name}
                 </Card.Title>
                 <div className="flex justify-start gap-2">
-                    <Badge maxW="sm" backgroundColor="#242424" color="teal">
-                        javascript
-                    </Badge>
-                    <Badge maxW="sm" backgroundColor="#242424" color="teal">
-                        React
-                    </Badge>
-                    <Badge maxW="sm" backgroundColor="#242424" color="teal">
-                        .Net Core
-                    </Badge>
+                    {generateTags()}
                 </div>
                <Card.Description>
                     <Text textStyle="xl" font-weight="medium" mt="2">
-                        Ein Entwicklerportfolio was über Markdown files im jeweiligen Entwicklungsprojekt verwaltet wird
+                        {description}
                     </Text>
                </Card.Description>
             </Card.Body>
