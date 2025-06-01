@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+using System.Text.Json;
 using LibGit2Sharp;
 
 namespace portfolio_backend.Models{
@@ -6,18 +8,21 @@ namespace portfolio_backend.Models{
 
         public Doc(){}
 
-        public Doc(string MarkdownPath, int RepositoryId)
+        public Doc(string DocumentName, string MarkdownPath, int RepositoryId)
         {
+            this.DocumentName = DocumentName;
             this.MarkdownPath = MarkdownPath;
             this.RepositoryId = RepositoryId;
             this.ThumbnailPath = null;
         }
 
-        public Doc(string MarkdownPath, string ThumbnailPath, int RepositoryId)
+        public Doc(string DocumentName, string MarkdownPath, string ThumbnailPath, int RepositoryId)
         {
+            this.DocumentName = DocumentName;
             this.MarkdownPath = MarkdownPath;
             this.ThumbnailPath = ThumbnailPath;
             this.RepositoryId = RepositoryId;
+
         }
 
         [Key]
@@ -27,6 +32,10 @@ namespace portfolio_backend.Models{
         public string MarkdownPath {get; set;}
         
         public string? ThumbnailPath { get; set; }
+
+        public string DocumentName { get; set; }
+
+        public string Tags { get; set; } = JsonSerializer.Serialize(new List<string>());
 
         public int? RepositoryId { get; set; }
 
