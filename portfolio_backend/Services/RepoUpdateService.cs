@@ -183,7 +183,15 @@ namespace portfolio_backend.Services{
 
             JsonConfig configObject = JsonSerializer.Deserialize<JsonConfig>(config);
 
-            
+            if (configObject == null) return;
+
+            doc.DocumentName = configObject.DocumentName;
+            doc.Description = configObject.Description;
+
+            foreach (string tag in configObject.Tags)
+            {
+                doc.AddTag(tag);
+            }
         }
 
     }

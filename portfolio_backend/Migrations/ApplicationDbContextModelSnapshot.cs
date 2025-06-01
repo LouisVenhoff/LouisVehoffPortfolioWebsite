@@ -30,6 +30,10 @@ namespace portfolio_backend.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<string>("DocumentName")
                         .IsRequired()
                         .HasColumnType("longtext");
