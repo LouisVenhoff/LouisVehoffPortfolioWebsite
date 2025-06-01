@@ -25,6 +25,15 @@ namespace portfolio_backend.Models{
 
         }
 
+        public void AddTag(string tag)
+        {
+            List<string> temp = JsonSerializer.Deserialize<List<string>>(this.Tags)! ?? throw new Exception("Document tags corrupt!");
+
+            temp.Add(tag);
+
+            this.Tags = JsonSerializer.Serialize(temp);
+        }
+
         [Key]
         public int Id {get; set;}
 

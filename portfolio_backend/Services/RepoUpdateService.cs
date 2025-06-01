@@ -136,7 +136,7 @@ namespace portfolio_backend.Services{
 
                         if (!File.Exists(markdownPath)) continue;
 
-                        Doc newDoc = new Doc(markdownPath, repo.Id);
+                        Doc newDoc = new Doc("DocumentName", markdownPath, repo.Id);
 
                         ProcessAssets(newDoc, repo);
 
