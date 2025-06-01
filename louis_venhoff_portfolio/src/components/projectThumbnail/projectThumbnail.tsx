@@ -24,7 +24,7 @@ const ProjectThumbnail:React.FC<ProjectThumbnailProps> = ({name, tags, descripti
                 <Card.Title mt="2">
                     {name}
                 </Card.Title>
-                <div className="flex justify-start gap-2">
+                <div className="flex flex-wrap justify-start gap-2">
                     {generateTags()}
                 </div>
                <Card.Description>
