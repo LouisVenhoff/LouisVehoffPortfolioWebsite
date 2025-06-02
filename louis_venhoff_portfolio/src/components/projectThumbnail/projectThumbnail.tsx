@@ -27,10 +27,8 @@ const ProjectThumbnail:React.FC<ProjectThumbnailProps> = ({name, tags, descripti
                 <div className="flex flex-wrap justify-start gap-2">
                     {generateTags()}
                 </div>
-               <Card.Description>
-                    <Text textStyle="xl" font-weight="medium" mt="2">
-                        {description}
-                    </Text>
+               <Card.Description textStyle="xl" font-weight="medium" mt="2">
+                    {description}
                </Card.Description>
             </Card.Body>
             <Card.Footer>
