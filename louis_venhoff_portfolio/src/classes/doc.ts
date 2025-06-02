@@ -3,15 +3,21 @@ import useDocument from "../hooks/useDocument";
 class Doc{
 
     public name:string;
+    public repositoryName:string;
     public docId: number;
     public markdown:File | null;
+    public description: string;
+    public tags: string[];
 
     private docLoader = useDocument();
 
-    public constructor(name:string, docId: number, markdown?:File){
+    public constructor(name:string, repositoryName: string, docId: number, description: string, tags: string[], markdown?:File,){
         this.name = name;
+        this.repositoryName = repositoryName;
         this.docId = docId;
         this.markdown = markdown ?? null;
+        this.description = description;
+        this.tags = tags;
     }
 
     public get markdownLoaded():boolean {
