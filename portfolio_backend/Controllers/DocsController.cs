@@ -34,7 +34,7 @@ namespace portfolio_backend.Controllers
 
             foreach (Doc document in docList)
             {
-                docDtoList.Add(new DocInfoDto(document.Id, _context.Repositorys.Find(document.RepositoryId)?.Name ?? "", document.MarkdownPath));
+                docDtoList.Add(new DocInfoDto(document.Id, document.DocumentName, document.Description, document.Tags, _context.Repositorys.Find(document.RepositoryId)?.Name ?? "", document.MarkdownPath));
             }
 
             return docDtoList;

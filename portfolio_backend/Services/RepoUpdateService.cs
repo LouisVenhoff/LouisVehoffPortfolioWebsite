@@ -1,6 +1,7 @@
 using portfolio_backend.Models;
 using portfolio_backend.Data;
 using portfolio_backend.Lib;
+using portfolio_backend.Classes;
 using Microsoft.EntityFrameworkCore.Query.Internal;
 using System.Threading.Tasks;
 using GitRepo = LibGit2Sharp.Repository;
@@ -8,6 +9,8 @@ using Git = LibGit2Sharp;
 using portfolio_backend.Exceptions;
 using Microsoft.OpenApi.Writers;
 using System.Reflection.Metadata;
+using System.Text.Json;
+
 
 namespace portfolio_backend.Services{
 
@@ -123,7 +126,7 @@ namespace portfolio_backend.Services{
                         {
                             documentFound = true;
                             ProcessAssets(document, repo);
-                
+
                             dbContext.Docs.Update(document);
                             await dbContext.SaveChangesAsync();
                             break;
@@ -136,7 +139,7 @@ namespace portfolio_backend.Services{
 
                         if (!File.Exists(markdownPath)) continue;
 
-                        Doc newDoc = new Doc(markdownPath, repo.Id);
+                        Doc newDoc = new Doc("DocumentName", markdownPath, repo.Id);
 
                         ProcessAssets(newDoc, repo);
 
@@ -150,6 +153,7 @@ namespace portfolio_backend.Services{
         private static void ProcessAssets(Doc doc, Repository repo)
         {
             ProcessThumbnail(doc, repo);
+            ProcessConfig(doc, repo);
         }
 
 
@@ -160,10 +164,34 @@ namespace portfolio_backend.Services{
             var files = Directory.GetFiles($"/var/portfolio/{repo.Id}/.portfolio/", "thumbnail.*");
 
             string? path = files.FirstOrDefault(f => allowedImageExtensions.Contains(Path.GetExtension(f).ToLower()));
-            
+
             if (path == null) return;
 
             doc.ThumbnailPath = path;
+        }
+
+        private static void ProcessConfig(Doc doc, Repository repo)
+        {
+            var file = Directory.GetFiles($"/var/portfolio/{repo.Id}/.portfolio/", "config.json");
+
+            if (file.Length == 0) return;
+
+            string config;
+
+            using StreamReader sr = new StreamReader(file[0]);
+            config = sr.ReadToEnd();
+
+            JsonConfig configObject = JsonSerializer.Deserialize<JsonConfig>(config);
+
+            if (configObject == null) return;
+
+            doc.DocumentName = configObject.DocumentName;
+            doc.Description = configObject.Description;
+
+            foreach (string tag in configObject.Tags)
+            {
+                doc.AddTag(tag);
+            }
         }
 
     }
