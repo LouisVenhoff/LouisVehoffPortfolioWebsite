@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import ProjectThumbnail from "../../components/projectThumbnail/projectThumbnail";
 import useDocument from "../../hooks/useDocument";
 import "../../styles/pages/projects/projects.css";
+import ContentHeader from "../../components/contentHeader/contentHeader";
 
 
 const Projects:React.FC = () => {
@@ -27,17 +28,11 @@ const Projects:React.FC = () => {
     
     return (
         <div className="projects--main">
-            <div className="projects--header">
+            <ContentHeader>
                 Projekte
-            </div>
+            </ContentHeader>
             <div className="flex justify-center">
                 <div className="projects--container">
-                    {buildThumbnails()}
-                    {buildThumbnails()}
-                    {buildThumbnails()}
-                    {buildThumbnails()}
-                    {buildThumbnails()}
-                    {buildThumbnails()}
                     {buildThumbnails()}
                 </div>
             </div>
