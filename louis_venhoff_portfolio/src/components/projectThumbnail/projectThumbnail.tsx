@@ -16,6 +16,10 @@ const ProjectThumbnail:React.FC<ProjectThumbnailProps> = ({name, tags, descripti
     const generateTags = ():JSX.Element[] => {
         return tags.map((tag:string) => <Badge maxW="sm" backgroundColor="#242424" color="teal">{tag}</Badge>);
     }
+
+    const redirectToProject = () => {
+        window.location.href = `http://localhost:5173/project/${projectId}`;
+    }
     
     return (
         <Card.Root maxW="sm" overflow="hidden" variant="elevated" color="teal" backgroundColor="#171717">
@@ -32,7 +36,7 @@ const ProjectThumbnail:React.FC<ProjectThumbnailProps> = ({name, tags, descripti
                </Card.Description>
             </Card.Body>
             <Card.Footer>
-                <Button variant="solid" backgroundColor="teal" color="white">
+                <Button variant="solid" backgroundColor="teal" color="white" onClick={() => {redirectToProject()}}>
                     Zum Projekt
                 </Button>
             </Card.Footer>
