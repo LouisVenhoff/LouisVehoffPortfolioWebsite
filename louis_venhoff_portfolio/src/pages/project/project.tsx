@@ -5,6 +5,7 @@ import testMarkdown from "../../assets/test.md?raw";
 import useDocument from "../../hooks/useDocument";
 import Doc from "../../classes/doc";
 import { useParams } from "react-router-dom";
+import ContentHeader from "../../components/contentHeader/contentHeader";
 
 
 const Project:React.FC= () => { 
@@ -50,9 +51,9 @@ const Project:React.FC= () => {
     return(
         <>
             <div className="project-main">
-                <div className="project-main--header">
+                <ContentHeader>
                     {currentDoc?.name}
-                </div>
+                </ContentHeader>
                 <div className="project-main--markdown-viewer">
                     <MarkdownElement markdown={markdown ?? testMarkdown} />
                 </div>
