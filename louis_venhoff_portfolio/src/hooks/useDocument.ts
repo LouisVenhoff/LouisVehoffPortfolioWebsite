@@ -11,7 +11,7 @@ export default function useDocument(){
         let output:Doc[] = [];
         
         for(let i = 0; i < data.length; i++){
-            output.push(new Doc(data[i].repositoryName, data[i].id));
+            output.push(new Doc(data[i].documentName, data[i].repositoryName, data[i].id, data[i].description, JSON.parse(data[i].tags)));
         }
 
         return output;

@@ -1,0 +1,23 @@
+.projects--main{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.projects--container{
+    width: 100%;
+    height: 100%;
+    margin-inline: 50px;
+    justify-content: center;
+    align-items: start;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.projects--element{
+    width: 500px;
+    height: 300px;
+    background-color: red;
+}
