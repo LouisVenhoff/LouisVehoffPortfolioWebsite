@@ -1,5 +1,4 @@
-import { Badge, Button, Card, Image, Text } from "@chakra-ui/react";
-import "../../styles/components/projectThumbnail.css";
+import { Badge, Button, Card, Image } from "@chakra-ui/react";
 import { JSX } from "react";
 
 type ProjectThumbnailProps = {
@@ -25,9 +24,9 @@ const ProjectThumbnail:React.FC<ProjectThumbnailProps> = ({name, tags, descripti
         <Card.Root maxW="sm" overflow="hidden" variant="elevated" color="teal" backgroundColor="#171717">
             <Card.Body>
                 <Image src={imagePath} alt="Image can not be loaded!"/>
-                <Card.Title mt="2">
-                    {name}
-                </Card.Title>
+                    <Card.Title mt="3" mb="1">
+                        {name}
+                    </Card.Title>
                 <div className="flex flex-wrap justify-start gap-2">
                     {generateTags()}
                 </div>
