@@ -26,10 +26,20 @@ const Projects:React.FC = () => {
     
     
     return (
-        <div className="flex justify-center">
-            <div className="projects--container">
-                {buildThumbnails()}
-            
+        <div className="projects--main">
+            <div className="projects--header">
+                Projekte
+            </div>
+            <div className="flex justify-center">
+                <div className="projects--container">
+                    {buildThumbnails()}
+                    {buildThumbnails()}
+                    {buildThumbnails()}
+                    {buildThumbnails()}
+                    {buildThumbnails()}
+                    {buildThumbnails()}
+                    {buildThumbnails()}
+                </div>
             </div>
         </div>
     );
