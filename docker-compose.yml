@@ -16,6 +16,8 @@ services:
       - mysql-data:/var/lib/mysql
   app:
     build: .
+    depends_on:
+      - "mysql"
     ports:
       - "80:80"
     restart: "always"
