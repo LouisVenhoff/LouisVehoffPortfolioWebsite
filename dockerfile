@@ -16,6 +16,10 @@ WORKDIR /app
 COPY ["louis_venhoff_portfolio/package*.json", "./"]
 RUN npm install
 
+ENV VITE_API_URL=http://localhost:80
+ENV VITE_WEBSITE_URL=http://localhost:80
+ENV VITE_GITHUB_PAT=
+
 COPY ["louis_venhoff_portfolio", "./"]
 RUN npm run build
 
@@ -24,7 +28,10 @@ COPY --from=reactbuild /app/dist /src/portfolio_backend/wwwroot
 RUN dotnet publish "portfolio_backend.csproj" -c Release -o /app/publish
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS run
+
 ENV ASPNETCORE_HTTP_PORTS=80
+ENV GITHUB_ACCESS_TOKEN=
+
 EXPOSE 80
 WORKDIR /app
 COPY --from=publish /app/publish .
