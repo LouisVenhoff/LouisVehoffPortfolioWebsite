@@ -22,7 +22,7 @@ export default function useDocument(){
 
     const fetchMarkdown = async (docId: number):Promise<File> => {
         console.log(serverUrl)
-        let result = await fetch(`http://localhost:5297/api/Docs/download/markdown/${docId}`);
+        let result = await fetch(`${serverUrl}/api/Docs/download/markdown/${docId}`);
 
         let buffer = await result.arrayBuffer();
         let markdownBlob = new Blob([buffer], {type: "text/markdown"});
