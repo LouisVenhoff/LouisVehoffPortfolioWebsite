@@ -17,7 +17,7 @@ const Projects:React.FC = () => {
 
     useEffect(() => {
         documentTools.loadDocumentList().then(e => setDocs(e));
-    });
+    }, []);
 
     const buildThumbnails = ():JSX.Element[] => {
         
