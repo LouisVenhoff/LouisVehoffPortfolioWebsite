@@ -2,6 +2,7 @@ using portfolio_backend.Data;
 using portfolio_backend.Services;
 using dotenv.net;
 using System;
+using portfolio_backend.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,7 +19,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
     {
-        policy.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod();
+        policy.WithOrigins(CorsHelper.GetAllowedOrigins()).AllowAnyHeader().AllowAnyMethod();
     });
 });
 
