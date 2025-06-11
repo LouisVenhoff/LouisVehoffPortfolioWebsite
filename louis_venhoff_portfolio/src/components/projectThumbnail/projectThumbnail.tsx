@@ -21,7 +21,7 @@ const ProjectThumbnail:React.FC<ProjectThumbnailProps> = ({name, tags, descripti
     }
 
     const redirectToProject = () => {
-        window.location.href = `http://${websiteUrl}project/${projectId}`;
+        window.location.href = `${websiteUrl}/project/${projectId}`;
     }
     
     return (
