@@ -50,12 +50,11 @@ const Project:React.FC= () => {
     }
 
     const renderTags = ():JSX.Element[] => {
-        
         if(!currentDoc) return [];
+
         return currentDoc.tags.map((tag, _) => 
             <Badge maxW="sm" backgroundColor="#000000" color="teal">{tag}</Badge>
         );
-
     }
     
     return(
