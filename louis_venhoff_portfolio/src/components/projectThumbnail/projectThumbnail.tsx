@@ -12,8 +12,6 @@ type ProjectThumbnailProps = {
 };
 
 const ProjectThumbnail:React.FC<ProjectThumbnailProps> = ({name, tags, description, imagePath, projectId}) => {
-    
-    const {websiteUrl} = useEnv();
 
 
     const generateTags = ():JSX.Element[] => {
@@ -21,7 +19,7 @@ const ProjectThumbnail:React.FC<ProjectThumbnailProps> = ({name, tags, descripti
     }
 
     const redirectToProject = () => {
-        window.location.href = `http://${websiteUrl}project/${projectId}`;
+        window.location.href = `/project/${projectId}`;
     }
     
     return (

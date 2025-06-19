@@ -20,11 +20,10 @@ const Projects:React.FC = () => {
     }, []);
 
     const buildThumbnails = ():JSX.Element[] => {
-        
         return docs.map((doc: Doc) => {
     
-            let imagePath:string = `http://${serverUrl}api/Docs/download/thumbnail/${doc.docId}`
-            
+            let imagePath:string = `${serverUrl}/api/Docs/download/thumbnail/${doc.docId}`
+            console.log(imagePath);
             return <ProjectThumbnail name={doc.name} description={doc.description} tags={doc.tags} imagePath={imagePath} projectId={doc.docId} />
         });
     }

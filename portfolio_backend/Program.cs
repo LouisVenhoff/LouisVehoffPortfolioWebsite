@@ -19,8 +19,14 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
     {
-        // policy.WithOrigins(CorsHelper.GetAllowedOrigins()).AllowAnyHeader().AllowAnyMethod();
-        policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+        if (builder.Environment.IsDevelopment())
+        {
+            policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+        }
+        else
+        {
+           policy.WithOrigins(CorsHelper.GetAllowedOrigins()).AllowAnyHeader().AllowAnyMethod(); 
+        }
     });
 });
 
