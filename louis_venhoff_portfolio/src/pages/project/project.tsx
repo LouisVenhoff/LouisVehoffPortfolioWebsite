@@ -6,6 +6,7 @@ import useDocument from "../../hooks/useDocument";
 import Doc from "../../classes/doc";
 import { useParams } from "react-router-dom";
 import ContentHeader from "../../components/contentHeader/contentHeader";
+import { Badge } from "@chakra-ui/react";
 
 
 const Project:React.FC= () => { 
@@ -47,12 +48,26 @@ const Project:React.FC= () => {
 
         setMarkdown(markdownText);
     }
+
+    const renderTags = ():JSX.Element[] => {
+        
+        if(!currentDoc) return [];
+        return currentDoc.tags.map((tag, _) => 
+            <Badge maxW="sm" backgroundColor="#000000" color="teal">{tag}</Badge>
+        );
+
+    }
     
     return(
         <>
             <div className="project-main">
                 <ContentHeader>
-                    {currentDoc?.name}
+                    <div className="flex flex-col">
+                        {currentDoc?.name}
+                        <div className="flex gap-2">
+                            {renderTags()}
+                        </div>
+                    </div>
                 </ContentHeader>
                 <div className="project-main--markdown-viewer">
                     <MarkdownElement markdown={markdown ?? testMarkdown} />
