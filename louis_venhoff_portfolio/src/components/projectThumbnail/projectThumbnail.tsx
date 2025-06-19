@@ -1,6 +1,5 @@
 import { Badge, Button, Card, Image } from "@chakra-ui/react";
 import { JSX } from "react";
-import useEnv from "../../hooks/useEnv";
 
 type ProjectThumbnailProps = {
     name: string,
@@ -12,8 +11,6 @@ type ProjectThumbnailProps = {
 };
 
 const ProjectThumbnail:React.FC<ProjectThumbnailProps> = ({name, tags, description, imagePath, projectId}) => {
-    
-    const {websiteUrl} = useEnv();
 
 
     const generateTags = ():JSX.Element[] => {
@@ -21,7 +18,7 @@ const ProjectThumbnail:React.FC<ProjectThumbnailProps> = ({name, tags, descripti
     }
 
     const redirectToProject = () => {
-        window.location.href = `${websiteUrl}/project/${projectId}`;
+        window.location.href = `/project/${projectId}`;
     }
     
     return (
