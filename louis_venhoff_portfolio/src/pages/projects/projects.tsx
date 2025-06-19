@@ -23,7 +23,7 @@ const Projects:React.FC = () => {
         return docs.map((doc: Doc) => {
     
             let imagePath:string = `${serverUrl}/api/Docs/download/thumbnail/${doc.docId}`
-            console.log(imagePath);
+            
             return <ProjectThumbnail name={doc.name} description={doc.description} tags={doc.tags} imagePath={imagePath} projectId={doc.docId} />
         });
     }

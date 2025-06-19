@@ -1,6 +1,5 @@
 import { Badge, Button, Card, Image } from "@chakra-ui/react";
 import { JSX } from "react";
-import useEnv from "../../hooks/useEnv";
 
 type ProjectThumbnailProps = {
     name: string,
