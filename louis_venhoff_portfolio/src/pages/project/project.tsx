@@ -60,7 +60,7 @@ const Project:React.FC= () => {
     return(
         <>
             <div className="project-main">
-                <ContentHeader>
+                <ContentHeader showBackButton={true}>
                     <div className="flex flex-col">
                         {currentDoc?.name}
                         <div className="flex gap-2">
