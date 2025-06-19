@@ -1,5 +1,7 @@
 import React from "react";
 import "../../styles/components/contentHeader.css";
+import { Button, IconButton } from "@chakra-ui/react";
+import { HiChevronLeft } from "react-icons/hi";
 
 type ContentHeaderProps = {
     children: React.ReactNode;
@@ -9,7 +11,13 @@ type ContentHeaderProps = {
 const ContentHeader:React.FC<ContentHeaderProps> = ({children}: ContentHeaderProps) => {
     return(
         <div className="content-header--main">
-            {children}
+            <div className="flex items-start">
+                <IconButton size="xl" backgroundColor="#242424">
+                    <HiChevronLeft />
+                </IconButton>
+                {children}
+            </div>
+            
         </div>
     );
 }
