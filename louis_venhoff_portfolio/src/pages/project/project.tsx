@@ -30,7 +30,7 @@ const Project:React.FC= () => {
 
     useEffect(() => {
         updateMarkdown();
-        setupAnimation((currentDoc?.tags.length ?? 0) > 9);
+        setupAnimation((currentDoc?.tags.length ?? 0) > 5);
     }, [currentDoc]);
 
     const loadDoc = async () => {
