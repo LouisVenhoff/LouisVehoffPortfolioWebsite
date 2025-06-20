@@ -7,6 +7,7 @@ import Doc from "../../classes/doc";
 import { useParams } from "react-router-dom";
 import ContentHeader from "../../components/contentHeader/contentHeader";
 import { Badge } from "@chakra-ui/react";
+import * as motion from "motion/react-client";
 
 
 const Project:React.FC= () => { 
@@ -52,8 +53,8 @@ const Project:React.FC= () => {
     const renderTags = ():JSX.Element[] => {
         if(!currentDoc) return [];
 
-        return currentDoc.tags.map((tag, _) => 
-            <Badge maxW="sm" backgroundColor="#000000" color="teal">{tag}</Badge>
+        return currentDoc.tags.map((tag, index) => 
+            <Badge key={index} maxW="sm" backgroundColor="#000000" color="teal">{tag}</Badge>
         );
     }
     
@@ -63,12 +64,15 @@ const Project:React.FC= () => {
                 <ContentHeader showBackButton={true}>
                     <div className="flex flex-col">
                         {currentDoc?.name}
-                        <div className="flex gap-2">
-                            {renderTags()}
+                        <div className="project-header--tags">
+                            <motion.div animate={{x: ["0%", "-50%"]}} transition={{repeat: Infinity, duration: 30, ease: "linear"}} className="flex gap-2">
+                                {renderTags()}
+                                {renderTags()}
+                            </motion.div>
                         </div>
                     </div>
                 </ContentHeader>
-                <div className="project-main--markdown-viewer">
+                <div className="project--markdown-viewer">
                     <MarkdownElement markdown={markdown ?? testMarkdown} />
                 </div>
             </div>
