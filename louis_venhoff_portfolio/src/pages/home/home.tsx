@@ -2,12 +2,15 @@ import CommitHeatmap from "../../components/commitHeatmap/commitHeatmap";
 import "../../styles/pages/home/home.css";
 import avatar from "../../assets/louis.png";
 import { Button } from "@chakra-ui/react";
+import useRedirect, {PageType} from "../../hooks/useRedirect";
 
 const Home: React.FC = () => {
   
      const redirectToProjectsPage = () => {
-          window.location.href = "/projects";
+          redirect(PageType.PROJECTS_INDEX);
      }
+
+     const redirect = useRedirect();
   
      return (
      <>

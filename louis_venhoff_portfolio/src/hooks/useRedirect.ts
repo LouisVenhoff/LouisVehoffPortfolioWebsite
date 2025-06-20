@@ -7,7 +7,7 @@ export enum PageType{
 
 export default function useRedirect(){
 
-    const redirectTo = (page:Type, attribute?: string | number) => {
+    const redirectTo = (page:PageType, attribute?: string | number) => {
 
         window.location.href = `${page}${attribute ? `/${attribute}` : ""}`;
 
