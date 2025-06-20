@@ -8,7 +8,7 @@ import { useParams } from "react-router-dom";
 import ContentHeader from "../../components/contentHeader/contentHeader";
 import { Badge } from "@chakra-ui/react";
 import * as motion from "motion/react-client";
-
+import { useAnimation } from "motion/react";
 
 const Project:React.FC= () => { 
     
@@ -21,6 +21,8 @@ const Project:React.FC= () => {
     const docLoader = useDocument();
 
     const {id} = useParams();
+
+    const animationController = useAnimation();
     
     useEffect(() => {
         loadDoc();
@@ -28,6 +30,7 @@ const Project:React.FC= () => {
 
     useEffect(() => {
         updateMarkdown();
+        setupAnimation((currentDoc?.tags.length ?? 0) > 9);
     }, [currentDoc]);
 
     const loadDoc = async () => {
@@ -75,6 +78,15 @@ const Project:React.FC= () => {
         return tagBadges;
 
     }
+
+    const setupAnimation = (enabled: boolean) => {
+        if(enabled){
+            animationController.start({x: ["0%", "-50%"]});
+        }
+        else{
+            animationController.start({x: 0});
+        }
+    }
     
     return(
         <>
@@ -83,7 +95,7 @@ const Project:React.FC= () => {
                     <div className="flex flex-col">
                         {currentDoc?.name}
                         <div ref={tagsDiv} className="project-header--tags">
-                            <motion.div animate={{x: ["0%", "-50%"]}} transition={{repeat: Infinity, duration: 30, ease: "linear"}} className="flex gap-2">
+                            <motion.div animate={animationController} transition={{repeat: Infinity, duration: 30, ease: "linear"}} className="flex gap-2">
                                 {renderTags()}
                                 {renderTags()}
                             </motion.div>
