@@ -9,6 +9,7 @@ import ContentHeader from "../../components/contentHeader/contentHeader";
 import { Badge } from "@chakra-ui/react";
 import * as motion from "motion/react-client";
 import { useAnimation } from "motion/react";
+import useScreenWidth from "../../hooks/useScreenWidth";
 
 const Project:React.FC= () => { 
     
@@ -23,6 +24,8 @@ const Project:React.FC= () => {
     const {id} = useParams();
 
     const animationController = useAnimation();
+
+    const screenWidth = useScreenWidth();
     
     useEffect(() => {
         loadDoc();
@@ -59,7 +62,7 @@ const Project:React.FC= () => {
         
         let divSize:number = 0;
 
-        badges.forEach((element: JSX.Element) => {
+        badges.forEach(() => {
             divSize += 50;
         });
 
@@ -80,7 +83,7 @@ const Project:React.FC= () => {
     }
 
     const setupAnimation = (enabled: boolean) => {
-        if(enabled){
+        if(enabled && !screenWidth.isMobileDevice()){
             animationController.start({x: ["0%", "-50%"]});
         }
         else{
@@ -97,7 +100,7 @@ const Project:React.FC= () => {
                         <div ref={tagsDiv} className="project-header--tags">
                             <motion.div animate={animationController} transition={{repeat: Infinity, duration: 30, ease: "linear"}} className="flex gap-2">
                                 {renderTags()}
-                                {renderTags()}
+                                {screenWidth.isMobileDevice() ? null : renderTags()}
                             </motion.div>
                         </div>
                     </div>
