@@ -36,7 +36,7 @@ const Home: React.FC = () => {
                </div>
                <div className="home--projects-link">
                     <Button onClick={redirectToProjectsPage} size="xl" width={window.screen.width - 100} color="white" variant="solid" backgroundColor="teal">
-                         Zu meinen Projekten
+                         My projects
                     </Button>
                </div>
                </div>

@@ -39,7 +39,7 @@ const ProjectThumbnail:React.FC<ProjectThumbnailProps> = ({name, tags, descripti
             </Card.Body>
             <Card.Footer>
                 <Button variant="solid" backgroundColor="teal" color="white" onClick={() => {redirectToProject()}}>
-                    Zum Projekt
+                    Explore Project
                 </Button>
             </Card.Footer>
         </Card.Root>

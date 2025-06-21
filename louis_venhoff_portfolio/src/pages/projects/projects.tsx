@@ -32,7 +32,7 @@ const Projects:React.FC = () => {
     return (
         <div className="projects--main">
             <ContentHeader>
-                Projekte
+                Projects
             </ContentHeader>
             <div className="flex justify-center">
                 <div className="projects--container">
