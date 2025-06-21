@@ -16,7 +16,7 @@ function App() {
       <>
         <Header>
           <NavButton title="Home" target={'home'} />
-          <NavButton title="Projekte" target={'construction'} />
+          <NavButton title="Projekte" target={'projects'} />
           <NavButton title="Über mich" target={'construction'} />
         </Header>
         <Outlet />
