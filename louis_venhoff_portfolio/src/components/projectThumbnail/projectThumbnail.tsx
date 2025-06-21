@@ -1,5 +1,6 @@
 import { Badge, Button, Card, Image } from "@chakra-ui/react";
 import { JSX } from "react";
+import useRedirect, { PageType } from "../../hooks/useRedirect";
 
 type ProjectThumbnailProps = {
     name: string,
@@ -12,13 +13,14 @@ type ProjectThumbnailProps = {
 
 const ProjectThumbnail:React.FC<ProjectThumbnailProps> = ({name, tags, description, imagePath, projectId}) => {
 
+    const redirect = useRedirect();
 
     const generateTags = ():JSX.Element[] => {
         return tags.map((tag:string) => <Badge maxW="sm" backgroundColor="#242424" color="teal">{tag}</Badge>);
     }
 
     const redirectToProject = () => {
-        window.location.href = `/project/${projectId}`;
+        redirect(PageType.PROJECT_SHOW, projectId);
     }
     
     return (
