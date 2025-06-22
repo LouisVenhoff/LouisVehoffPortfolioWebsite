@@ -98,7 +98,7 @@ const Project:React.FC= () => {
                     <div className="flex flex-col">
                         {currentDoc?.name}
                         <div ref={tagsDiv} className="project-header--tags">
-                            <motion.div animate={animationController} transition={{repeat: Infinity, duration: 30, ease: "linear"}} className="flex gap-2">
+                            <motion.div animate={animationController} transition={{repeat: Infinity, duration: 30, ease: "linear"}} className="project-header-tags--container">
                                 {renderTags()}
                                 {screenWidth.isMobileDevice() ? null : renderTags()}
                             </motion.div>

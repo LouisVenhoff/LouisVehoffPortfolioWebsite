@@ -1,9 +1,9 @@
 .content-header--main{
-    height: 4rem;
+    height: auto;
     width: 90%;
     align-self: center;
-    margin-block-start: 20px;
-    margin-block-end: 10px;
+    margin-block-start: 1rem;
+    margin-block-end: 1rem;
     font-size: 30px;
     font-family: monospace;
 }
