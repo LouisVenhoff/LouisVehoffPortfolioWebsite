@@ -20,25 +20,9 @@ const TagDisplay:React.FC<TagDisplayProps> = ({currentDoc}) => {
         // setupAnimation((currentDoc?.tags.length ?? 0) > 5);
     }, [currentDoc]);
     
-    const calculateTagsDivSize = (badges: JSX.Element[]) => {
-        
-        if(!tagsDiv) return;
-
-        let divSize:number = 0;
-
-        badges.forEach((_) => {
-            divSize += 50;
-        });
-
-        tagsDiv.current!.style.width = `${divSize}px`;
-    }
-
+    
     const renderTags = ():JSX.Element[] => {
         if(!currentDoc) return [];
-
-        // let tagBadges:JSX.Element[] = currentDoc.tags.map((tag, index) => {
-        //     return <Badge key={index} maxW="sm" backgroundColor="#000000" color="teal">{tag}</Badge>
-        // });
 
         let badges:JSX.Element[] = [];
 
@@ -50,7 +34,9 @@ const TagDisplay:React.FC<TagDisplayProps> = ({currentDoc}) => {
 
         let hiddenTagCount: number = currentDoc.tags.length - visibleTagCount;
 
-        badges.push(<p className="tag-display--hidden-tag-count">{`+${hiddenTagCount}`}</p>);
+        if(hiddenTagCount > 0){
+            badges.push(<p className="tag-display--hidden-tag-count">{`+${hiddenTagCount}`}</p>);
+        }
 
         // calculateTagsDivSize(badges);
 
